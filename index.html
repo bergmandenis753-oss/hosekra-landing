@@ -1,7 +1,7 @@
 <html lang="ru"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hosekra â ÐÐ¾Ð´ÑÐ»ÑÐ½ÑÐµ Ð´Ð¾Ð¼Ð° Ð¸ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑÑ</title>
+  <title>Hosekra — Модульные дома и контейнеры</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -15,14 +15,14 @@
       --mid:     #9a9a9a;
       --muted:   #555;
       --border:  rgba(255,255,255,0.07);
-      --accent:  #c8a96e;   /* ÑÑÐ¿Ð»Ð¾Ðµ Ð·Ð¾Ð»Ð¾ÑÐ¾ â ÑÐ¾ÑÐµÑÐ°ÐµÑÑÑ Ñ Ð±ÐµÐ»ÑÐ¼/ÑÑÑÐ½ÑÐ¼ Ð´Ð¾Ð¼Ð¾Ð¼ */
+      --accent:  #c8a96e;   /* тёплое золото — сочетается с белым/чёрным домом */
       --accent2: #a88b52;
       --light:   #e4e2de;
       --white:   #ffffff;
       --font:    'Outfit', system-ui, sans-serif;
     }
 
-    html { scroll-behavior: auto; } /* auto â Ð½ÑÐ¶Ð½Ð¾ Ð´Ð»Ñ scroll-driven video */
+    html { scroll-behavior: auto; } /* auto — нужно для scroll-driven video */
     body {
       background: var(--bg);
       color: var(--light);
@@ -33,7 +33,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* âââ HEADER âââ */
+    /* ─── HEADER ─── */
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -136,7 +136,7 @@
     }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* âââ HERO (Ð¾Ð±ÑÑÐ½ÑÐ¹, Ð±ÐµÐ· scroll-drive) âââ */
+    /* ─── HERO (обычный, без scroll-drive) ─── */
     .hero {
       position: relative;
       width: 100%;
@@ -156,10 +156,10 @@
       z-index: 0;
     }
 
-    /* âââ SCROLL-DRIVEN VIDEO SECTION âââ */
+    /* ─── SCROLL-DRIVEN VIDEO SECTION ─── */
     .sdv-track {
       position: relative;
-      height: 400vh; /* Ð¿ÑÐ¾ÑÑÑÐ°Ð½ÑÑÐ²Ð¾ Ð´Ð»Ñ ÑÐºÑÐ¾Ð»Ð»Ð° */
+      height: 400vh; /* пространство для скролла */
     }
     .sdv-sticky {
       position: sticky;
@@ -185,7 +185,7 @@
         linear-gradient(to right, rgba(14,15,15,0.75) 0%, rgba(14,15,15,0.3) 60%, transparent 100%),
         linear-gradient(to top, rgba(14,15,15,0.6) 0%, transparent 50%);
     }
-    /* Watermark cover Ð´Ð»Ñ scroll-driven ÑÐµÐºÑÐ¸Ð¸ */
+    /* Watermark cover для scroll-driven секции */
     .sdv-sticky::after {
       content: '';
       position: absolute;
@@ -207,7 +207,7 @@
       .sdv-caption { left: 24px; bottom: 60px; }
     }
 
-    /* Dark gradient overlay â ÑÑÐ¼Ð½ÐµÐµ ÑÐ»ÐµÐ²Ð° Ð´Ð»Ñ ÑÐµÐºÑÑÐ° */
+    /* Dark gradient overlay — тёмнее слева для текста */
     .hero-overlay {
       position: absolute;
       inset: 0;
@@ -216,7 +216,7 @@
         linear-gradient(to right, rgba(14,15,15,0.88) 0%, rgba(14,15,15,0.55) 50%, rgba(14,15,15,0.15) 100%),
         linear-gradient(to top, rgba(14,15,15,0.7) 0%, transparent 50%);
     }
-    /* Watermark cover â Ð¿ÑÐ°Ð²ÑÐ¹ Ð½Ð¸Ð¶Ð½Ð¸Ð¹ ÑÐ³Ð¾Ð» */
+    /* Watermark cover — правый нижний угол */
     .hero::after {
       content: '';
       position: absolute;
@@ -335,7 +335,7 @@
       50% { transform: translateX(-50%) translateY(6px); }
     }
 
-    /* âââ SECTION COMMON âââ */
+    /* ─── SECTION COMMON ─── */
     section { padding: 120px 0; }
     .container {
       max-width: 1300px;
@@ -379,7 +379,7 @@
       margin-top: 14px;
     }
 
-    /* âââ PRODUCTS BENTO âââ */
+    /* ─── PRODUCTS BENTO ─── */
     .products { background: var(--surface); }
 
     .products-head {
@@ -433,7 +433,7 @@
     }
     .bc:hover .bc-img img { transform: scale(1.04); }
 
-    /* overlay Ð½Ð° ÐºÐ°ÑÑÐ¸Ð½ÐºÐµ */
+    /* overlay на картинке */
     .bc-img::after {
       content: '';
       position: absolute;
@@ -481,7 +481,7 @@
     .bc:hover .bc-arrow { border-color: var(--accent); background: var(--accent); }
     .bc:hover .bc-arrow svg path { stroke: #1a1400; }
 
-    /* âââ PROCESS âââ */
+    /* ─── PROCESS ─── */
     .process { background: var(--bg); }
 
     .process-wrap {
@@ -539,7 +539,7 @@
       object-fit: cover;
     }
 
-    /* âââ ABOUT GOLD âââ */
+    /* ─── ABOUT GOLD ─── */
     .about {
       background: var(--accent);
       padding: 96px 0;
@@ -581,7 +581,7 @@
       line-height: 1.4;
     }
 
-    /* âââ GALLERY STRIP âââ */
+    /* ─── GALLERY STRIP ─── */
     .gallery { background: var(--surface); padding: 80px 0; }
 
     .gallery-filters {
@@ -642,7 +642,7 @@
     .g-item:hover .g-label { opacity: 1; }
     .g-item.hidden { display: none; }
 
-    /* âââ CONTACT âââ */
+    /* ─── CONTACT ─── */
     .contact { background: var(--bg); }
 
     .contact-wrap {
@@ -714,7 +714,7 @@
 
     .fr { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
-    /* âââ FOOTER âââ */
+    /* ─── FOOTER ─── */
     footer {
       background: #090909;
       border-top: 1px solid var(--border);
@@ -752,7 +752,7 @@
     }
     .f-social:hover { border-color: var(--accent); }
 
-    /* âââ ÐÐ ÐÐÐÐ£Ð©ÐÐ¡Ð¢ÐÐ âââ */
+    /* ─── ПРЕИМУЩЕСТВА ─── */
     .features { background: var(--bg); }
     .features-head { margin-bottom: 56px; }
 
@@ -791,7 +791,7 @@
       line-height: 1.65;
     }
 
-    /* âââ ÐÐÐ ÐÐÐ âââ */
+    /* ─── ГАРАЖИ ─── */
     .garages { background: var(--surface); }
     .garages-head {
       display: grid;
@@ -855,7 +855,7 @@
       line-height: 1.55;
     }
 
-    /* âââ ÐÐ¢ÐÐ«ÐÐ« âââ */
+    /* ─── ОТЗЫВЫ ─── */
     .reviews { background: var(--bg); }
 
     .reviews-grid {
@@ -924,7 +924,7 @@
       .reviews-grid { grid-template-columns: 1fr; }
     }
 
-    /* âââ PROFILI âââ */
+    /* ─── PROFILI ─── */
     .profili { background: var(--bg); }
 
     .profili-head {
@@ -962,7 +962,7 @@
     }
     .pp-text { font-size: 12px; color: var(--muted); line-height: 1.6; }
 
-    /* Ð¡Ð»Ð°Ð¹Ð´ÐµÑ */
+    /* Слайдер */
     .profili-slider-wrap {
       position: relative;
       overflow: hidden;
@@ -1015,7 +1015,7 @@
       .ps-item { flex: 0 0 calc(100%); }
     }
 
-    /* âââ ANIMATIONS âââ */
+    /* ─── ANIMATIONS ─── */
     .fu {
       opacity: 0;
       transform: translateY(28px);
@@ -1027,7 +1027,7 @@
     .fu.d3 { transition-delay: 0.3s; }
     .fu.d4 { transition-delay: 0.4s; }
 
-    /* âââ RESPONSIVE âââ */
+    /* ─── RESPONSIVE ─── */
     .ham { display: none; }
 
     @media (max-width: 1024px) {
@@ -1067,10 +1067,10 @@
 </head>
 <body>
 
-<!-- âââ HEADER âââ -->
+<!-- ─── HEADER ─── -->
 <header id="hdr">
   <a href="#" class="logo-wrap">
-    <!-- Hosekra logo icon â hexagon geometric -->
+    <!-- Hosekra logo icon — hexagon geometric -->
     <svg class="logo-icon" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
       <!-- Geometric hexagon-style house shape, multi-color like original -->
       <polygon points="19,2 34,10 34,28 19,36 4,28 4,10" fill="none" stroke="none"></polygon>
@@ -1092,20 +1092,20 @@
   </a>
 
   <nav>
-    <a href="#products">ÐÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑÑ</a>
-    <a href="#garages">ÐÐ°ÑÐ°Ð¶Ð¸</a>
-    <a href="#profili">Ð¢ÐµÑÐ½Ð¾Ð»Ð¾Ð³Ð¸Ñ</a>
-    <a href="#features">ÐÑÐµÐ¸Ð¼ÑÑÐµÑÑÐ²Ð°</a>
-    <a href="#reviews">ÐÑÐ·ÑÐ²Ñ</a>
-    <a href="#gallery">ÐÐ°Ð»ÐµÑÐµÑ</a>
-    <a href="#contact">ÐÐ¾Ð½ÑÐ°ÐºÑ</a>
+    <a href="#products">Контейнеры</a>
+    <a href="#garages">Гаражи</a>
+    <a href="#profili">Технология</a>
+    <a href="#features">Преимущества</a>
+    <a href="#reviews">Отзывы</a>
+    <a href="#gallery">Галерея</a>
+    <a href="#contact">Контакт</a>
   </nav>
 
-  <a href="#contact" class="btn-gold header-cta">ÐÐ¾Ð»ÑÑÐ¸ÑÑ Ð¿ÑÐµÐ´Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ</a>
-  <button class="ham" aria-label="ÐÐµÐ½Ñ"><span></span><span></span><span></span></button>
+  <a href="#contact" class="btn-gold header-cta">Получить предложение</a>
+  <button class="ham" aria-label="Меню"><span></span><span></span><span></span></button>
 </header>
 
-<!-- âââ HERO â Ð¾Ð±ÑÑÐ½Ð¾Ðµ Ð²Ð¸Ð´ÐµÐ¾, Ð¾Ð´Ð¸Ð½ ÑÐ°Ð· Ð±ÐµÐ· loop âââ -->
+<!-- ─── HERO — обычное видео, один раз без loop ─── -->
 <section class="hero" id="hero">
   <video class="hero-video-bg" id="heroVideo" muted="" playsinline="" preload="auto" autoplay="">
     <source src="hero.mp4" type="video/mp4">
@@ -1113,122 +1113,122 @@
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
-    <div class="hero-eyebrow fu">ÐÑÐµÐ¼Ð¸Ð°Ð»ÑÐ½Ð¾Ðµ Ð¼Ð¾Ð´ÑÐ»ÑÐ½Ð¾Ðµ ÑÑÑÐ¾Ð¸ÑÐµÐ»ÑÑÑÐ²Ð¾ Â· 37 Ð»ÐµÑ Ð¾Ð¿ÑÑÐ°</div>
-    <h1 class="hero-title fu d1">
-      ÐÐ¾Ð¼Ð° Ð½Ð¾Ð²Ð¾Ð³Ð¾<br><em>Ð¿Ð¾ÐºÐ¾Ð»ÐµÐ½Ð¸Ñ</em><br>Ð¸Ð· ÑÑÐ°Ð»Ð¸
+    <div class="hero-eyebrow fu vis">Премиальное модульное строительство · 37 лет опыта</div>
+    <h1 class="hero-title fu d1 vis">
+      Дома нового<br><em>поколения</em><br>из стали
     </h1>
-    <p class="hero-sub fu d2">
-      ÐÐ¾Ð´ÑÐ»ÑÐ½ÑÐµ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑÐ½ÑÐµ Ð´Ð¾Ð¼Ð° Ð¸ Ð¶Ð¸Ð»ÑÐµ Ð¾Ð±ÑÐµÐºÑÑ Ð¿Ð¾Ð´ ÐºÐ»ÑÑ. ÐÑÐ¾Ð¸Ð·Ð²Ð¾Ð´ÑÑÐ²Ð¾ Ð² Ð¡Ð»Ð¾Ð²ÐµÐ½Ð¸Ð¸, Ð´Ð¾ÑÑÐ°Ð²ÐºÐ° Ð¿Ð¾ Ð²ÑÐµÐ¹ ÐÐ²ÑÐ¾Ð¿Ðµ Ð·Ð° 30 Ð¼Ð¸Ð½ÑÑ Ð¼Ð¾Ð½ÑÐ°Ð¶Ð°.
+    <p class="hero-sub fu d2 vis">
+      Модульные контейнерные дома и жилые объекты под ключ. Производство в Словении, доставка по всей Европе за 30 минут монтажа.
     </p>
-    <div class="hero-actions fu d3">
+    <div class="hero-actions fu d3 vis">
       <a href="#products" class="btn-gold">
-        Ð¡Ð¼Ð¾ÑÑÐµÑÑ Ð¿ÑÐ¾ÐµÐºÑÑ
+        Смотреть проекты
         <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1 6.5h11M7 2l4.5 4.5L7 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       </a>
-      <a href="#contact" class="btn-ghost">ÐÐ¾Ð»ÑÑÐ¸ÑÑ ÐºÐ¾Ð½ÑÑÐ»ÑÑÐ°ÑÐ¸Ñ</a>
+      <a href="#contact" class="btn-ghost">Получить консультацию</a>
     </div>
   </div>
 
   <!-- Stats bottom right -->
-  <div class="hero-stats fu d4">
+  <div class="hero-stats fu d4 vis">
     <div class="stat-item">
       <div class="stat-num">37<span>+</span></div>
-      <div class="stat-label">Ð»ÐµÑ Ð¾Ð¿ÑÑÐ°</div>
+      <div class="stat-label">лет опыта</div>
     </div>
     <div class="stat-item">
       <div class="stat-num">1000<span>+</span></div>
-      <div class="stat-label">Ð¿ÑÐ¾ÐµÐºÑÐ¾Ð²</div>
+      <div class="stat-label">проектов</div>
     </div>
     <div class="stat-item">
       <div class="stat-num">30<span>'</span></div>
-      <div class="stat-label">Ð¼Ð¾Ð½ÑÐ°Ð¶</div>
+      <div class="stat-label">монтаж</div>
     </div>
   </div>
 
 </section>
 
-<!-- âââ PRODUCTS âââ -->
+<!-- ─── PRODUCTS ─── -->
 <section class="products" id="products">
   <div class="container">
     <div class="products-head">
       <div>
-        <div class="s-tag fu">ÐÐ°ÑÐ¸ Ð¿ÑÐ¾Ð´ÑÐºÑÑ</div>
-        <h2 class="s-title fu d1">ÐÐ°Ð¶Ð´ÑÐ¹ Ð¿ÑÐ¾ÐµÐºÑ â<br><em>ÑÐ½Ð¸ÐºÐ°Ð»ÑÐ½Ð¾Ðµ ÑÐµÑÐµÐ½Ð¸Ðµ</em></h2>
+        <div class="s-tag fu">Наши продукты</div>
+        <h2 class="s-title fu d1">Каждый проект —<br><em>уникальное решение</em></h2>
       </div>
-      <p class="s-sub fu d2">ÐÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑÑ Ð´Ð»Ñ Ð¶Ð¸Ð»ÑÑ, ÑÐ°Ð±Ð¾ÑÑ Ð¸ ÑÑÐ°Ð½ÐµÐ½Ð¸Ñ. ÐÐ¾Ð´ÑÐ»ÑÐ½ÑÐµ Ð´Ð¾Ð¼Ð° Ð¿Ð¾Ð´ ÐºÐ»ÑÑ. Ð Ð°Ð·Ð¼ÐµÑÑ Ð¿Ð¾ Ð·Ð°Ð¿ÑÐ¾ÑÑ, Ð´Ð¾ÑÑÐ°Ð²ÐºÐ° Ð¸ Ð¼Ð¾Ð½ÑÐ°Ð¶ Ð²ÐºÐ»ÑÑÐµÐ½Ñ.</p>
+      <p class="s-sub fu d2">Контейнеры для жилья, работы и хранения. Модульные дома под ключ. Размеры по запросу, доставка и монтаж включены.</p>
     </div>
 
     <div class="bento">
 
-      <!-- 1: Ð¤ÑÑÐ° â Ð´Ð¾ÑÑÐ°Ð²ÐºÐ° -->
+      <!-- 1: Фура — доставка -->
       <a class="bc fu" href="https://www.hosekra.com/kontejnerji/" target="_blank" rel="noopener">
         <div class="bc-img">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FJ58wcwBbg8rP9sKeJSktoKNhM/hf_20260621_170547_f72489c7-f9d4-45a3-99a9-a8d341be6e34.png" alt="ÐÐ¾ÑÑÐ°Ð²ÐºÐ° ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑÐ°">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FJ58wcwBbg8rP9sKeJSktoKNhM/hf_20260621_170547_f72489c7-f9d4-45a3-99a9-a8d341be6e34.png" alt="Доставка контейнера">
         </div>
         <div class="bc-body">
-          <div class="bc-type">ÐÐ¾ÑÑÐ°Ð²ÐºÐ°</div>
-          <div class="bc-name">ÐÐ¾ÑÐ¾Ð²ÑÐ¹ â Ñ Ð·Ð°Ð²Ð¾Ð´Ð° Ðº Ð²Ð°Ð¼</div>
-          <div class="bc-desc">ÐÑÐ¸Ð²Ð¾Ð·Ð¸Ð¼ Ð¿Ð¾Ð»Ð½Ð¾ÑÑÑÑ ÑÐ¾Ð±ÑÐ°Ð½Ð½ÑÐ¹ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑ Ð¿ÑÑÐ¼Ð¾ Ðº Ð¼ÐµÑÑÑ ÑÑÑÐ°Ð½Ð¾Ð²ÐºÐ¸.</div>
+          <div class="bc-type">Доставка</div>
+          <div class="bc-name">Готовый — с завода к вам</div>
+          <div class="bc-desc">Привозим полностью собранный контейнер прямо к месту установки.</div>
         </div>
         <div class="bc-arrow">
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1 5.5h9M6 2l3.5 3.5L6 9" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path></svg>
         </div>
       </a>
 
-      <!-- 2: ÐÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑ ÑÐ½Ð°ÑÑÐ¶Ð¸ â Ð·Ð°Ð¼ÐµÐ½ÑÐ½ Ð½Ð° ÑÐµÐ°Ð»ÑÐ½Ð¾Ðµ ÑÐ¾ÑÐ¾ Ñ hosekra.com -->
+      <!-- 2: Контейнер снаружи — заменён на реальное фото с hosekra.com -->
       <a class="bc fu d1" href="https://www.hosekra.com/kontejnerji/" target="_blank" rel="noopener">
         <div class="bc-img">
-          <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/3/2021/12/hosekra-kontejner-hisa-zunanjost.jpg" alt="ÐÐ¸Ð»Ð¾Ð¹ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑ" onerror="this.src='https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/3/2021/12/hosekra-kontejner-hisa-zunanjost.jpg'">
+          <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/3/2021/12/hosekra-kontejner-hisa-zunanjost.jpg" alt="Жилой контейнер" onerror="this.src='https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/3/2021/12/hosekra-kontejner-hisa-zunanjost.jpg'">
         </div>
         <div class="bc-body">
-          <div class="bc-type">ÐÐ¸Ð»Ð¾Ð¹ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑ</div>
-          <div class="bc-name">ÐÐ°ÑÐ° / ÐÐ°Ð³Ð¾ÑÐ¾Ð´Ð½ÑÐ¹ Ð´Ð¾Ð¼</div>
-          <div class="bc-desc">ÐÐ½ÑÑÐ°ÑÐ¸Ñ + Ð´ÐµÑÐµÐ²ÑÐ½Ð½ÑÐµ ÑÐµÐ¹ÐºÐ¸ Piano. Ð¢ÐµÑÑÐ°ÑÐ°, Ð¿Ð°Ð½Ð¾ÑÐ°Ð¼Ð½ÑÐµ Ð¾ÐºÐ½Ð°.</div>
+          <div class="bc-type">Жилой контейнер</div>
+          <div class="bc-name">Дача / Загородный дом</div>
+          <div class="bc-desc">Антрацит + деревянные рейки Piano. Терраса, панорамные окна.</div>
         </div>
         <div class="bc-arrow">
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1 5.5h9M6 2l3.5 3.5L6 9" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path></svg>
         </div>
       </a>
 
-      <!-- 3: ÐÐ½ÑÐµÑÑÐµÑ -->
+      <!-- 3: Интерьер -->
       <a class="bc fu d2" href="https://www.hosekra.com/kontejnerji/" target="_blank" rel="noopener">
         <div class="bc-img">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FJ58wcwBbg8rP9sKeJSktoKNhM/hf_20260621_170600_b1903bbe-db63-47d6-897f-c6a988056aa3.png" alt="ÐÐ½ÑÐµÑÑÐµÑ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑÐ°">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FJ58wcwBbg8rP9sKeJSktoKNhM/hf_20260621_170600_b1903bbe-db63-47d6-897f-c6a988056aa3.png" alt="Интерьер контейнера">
         </div>
         <div class="bc-body">
-          <div class="bc-type">ÐÐ½ÑÐµÑÑÐµÑ</div>
-          <div class="bc-name">ÐÐ¾Ð»Ð½Ð°Ñ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑÐ°ÑÐ¸Ñ</div>
-          <div class="bc-desc">ÐÑÑÐ½Ñ, Ð´ÑÑ, ÑÐ°Ð½ÑÐ·ÐµÐ», Ð´Ð¸Ð²Ð°Ð½-Ð·Ð¾Ð½Ð°. ÐÐ¸Ð´ Ð½Ð° Ð»ÐµÑ.</div>
+          <div class="bc-type">Интерьер</div>
+          <div class="bc-name">Полная комплектация</div>
+          <div class="bc-desc">Кухня, душ, санузел, диван-зона. Вид на лес.</div>
         </div>
         <div class="bc-arrow">
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1 5.5h9M6 2l3.5 3.5L6 9" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path></svg>
         </div>
       </a>
 
-      <!-- 4: ÐÐ¾Ð´ÑÐ»ÑÐ½ÑÐ¹ Ð´Ð¾Ð¼ â Ð±Ð¾Ð»ÑÑÐ°Ñ ÐºÐ°ÑÑÐ¾ÑÐºÐ° -->
+      <!-- 4: Модульный дом — большая карточка -->
       <a class="bc fu d3" href="https://www.hosekra.com/lgsf/" target="_blank" rel="noopener">
         <div class="bc-img">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FJ58wcwBbg8rP9sKeJSktoKNhM/hf_20260621_171430_5c94f780-81e2-4182-a59b-b537556de728.png" alt="ÐÐ¾Ð´ÑÐ»ÑÐ½ÑÐ¹ Ð´Ð¾Ð¼ Living H50">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FJ58wcwBbg8rP9sKeJSktoKNhM/hf_20260621_171430_5c94f780-81e2-4182-a59b-b537556de728.png" alt="Модульный дом Living H50">
         </div>
         <div class="bc-body">
-          <div class="bc-type">ÐÐ¾Ð´ÑÐ»ÑÐ½ÑÐ¹ Ð´Ð¾Ð¼</div>
+          <div class="bc-type">Модульный дом</div>
           <div class="bc-name">Living H50+50</div>
-          <div class="bc-desc">ÐÐ²ÑÑÑÑÐ°Ð¶Ð½ÑÐ¹ ÑÐµÐ¼ÐµÐ¹Ð½ÑÐ¹ Ð´Ð¾Ð¼ Ð½Ð° ÑÑÐ°Ð»ÑÐ½Ð¾Ð¼ ÐºÐ°ÑÐºÐ°ÑÐµ LGSF. ÐÐµÐ»ÑÐ¹ ÑÐ°ÑÐ°Ð´, ÑÑÐ¼Ð½ÑÐµ Ð¾ÐºÐ½Ð°, Ð±ÑÑÑÑÑÐ¹ Ð¼Ð¾Ð½ÑÐ°Ð¶.</div>
+          <div class="bc-desc">Двухэтажный семейный дом на стальном каркасе LGSF. Белый фасад, тёмные окна, быстрый монтаж.</div>
         </div>
         <div class="bc-arrow">
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1 5.5h9M6 2l3.5 3.5L6 9" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path></svg>
         </div>
       </a>
 
-      <!-- 5: ÐÐ°ÑÐºÐ°Ñ -->
+      <!-- 5: Каркас -->
       <a class="bc fu d4" href="https://www.hosekra.com/lgsf/" target="_blank" rel="noopener">
         <div class="bc-img">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FJ58wcwBbg8rP9sKeJSktoKNhM/hf_20260621_171632_095d4333-acc2-4071-990d-a12569215c4e.png" alt="Ð¡ÑÐ°Ð»ÑÐ½Ð¾Ð¹ ÐºÐ°ÑÐºÐ°Ñ LGSF">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FJ58wcwBbg8rP9sKeJSktoKNhM/hf_20260621_171632_095d4333-acc2-4071-990d-a12569215c4e.png" alt="Стальной каркас LGSF">
         </div>
         <div class="bc-body">
-          <div class="bc-type">Ð¢ÐµÑÐ½Ð¾Ð»Ð¾Ð³Ð¸Ñ</div>
-          <div class="bc-name">ÐÐ°ÑÐºÐ°Ñ LGSF</div>
-          <div class="bc-desc">ÐÑÐ³ÐºÐ°Ñ Ð¾ÑÐ¸Ð½ÐºÐ¾Ð²Ð°Ð½Ð½Ð°Ñ ÑÑÐ°Ð»Ñ â Ð¾ÑÐ½Ð¾Ð²Ð° ÐºÐ°Ð¶Ð´Ð¾Ð³Ð¾ Ð´Ð¾Ð¼Ð° Hosekra.</div>
+          <div class="bc-type">Технология</div>
+          <div class="bc-name">Каркас LGSF</div>
+          <div class="bc-desc">Лёгкая оцинкованная сталь — основа каждого дома Hosekra.</div>
         </div>
         <div class="bc-arrow">
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1 5.5h9M6 2l3.5 3.5L6 9" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path></svg>
@@ -1239,52 +1239,52 @@
   </div>
 </section>
 
-<!-- âââ PROCESS âââ -->
+<!-- ─── PROCESS ─── -->
 <section class="process" id="process">
   <div class="container">
-    <div class="s-tag fu">ÐÐ°Ðº ÑÑÐ¾ ÑÐ°Ð±Ð¾ÑÐ°ÐµÑ</div>
-    <h2 class="s-title fu d1">ÐÑ Ð¸Ð´ÐµÐ¸ Ð´Ð¾<br><em>Ð³Ð¾ÑÐ¾Ð²Ð¾Ð³Ð¾ Ð´Ð¾Ð¼Ð°</em></h2>
+    <div class="s-tag fu">Как это работает</div>
+    <h2 class="s-title fu d1">От идеи до<br><em>готового дома</em></h2>
 
     <div class="process-wrap">
       <div class="steps">
         <div class="step on fu">
           <div class="step-n">01</div>
           <div>
-            <div class="step-h">ÐÐ¾Ð½ÑÑÐ»ÑÑÐ°ÑÐ¸Ñ Ð¸ Ð¿ÑÐ¾ÐµÐºÑ</div>
-            <div class="step-p">ÐÐ±ÑÑÐ¶Ð´Ð°ÐµÐ¼ Ð²Ð°ÑÐ¸ Ð¿Ð¾ÑÑÐµÐ±Ð½Ð¾ÑÑÐ¸, ÑÐ°Ð·Ð¼ÐµÑÑ Ð¸ Ð±ÑÐ´Ð¶ÐµÑ. ÐÐ¾Ð´Ð±Ð¸ÑÐ°ÐµÐ¼ ÑÐµÑÐµÐ½Ð¸Ðµ Ð¸Ð»Ð¸ ÑÐ¾Ð·Ð´Ð°ÑÐ¼ Ð¿Ð¾Ð´ Ð·Ð°ÐºÐ°Ð· ÑÐµÑÐµÐ· ÐºÐ¾Ð½ÑÐ¸Ð³ÑÑÐ°ÑÐ¾Ñ.</div>
+            <div class="step-h">Консультация и проект</div>
+            <div class="step-p">Обсуждаем ваши потребности, размеры и бюджет. Подбираем решение или создаём под заказ через конфигуратор.</div>
           </div>
         </div>
         <div class="step fu d1">
           <div class="step-n">02</div>
           <div>
-            <div class="step-h">ÐÑÐ¾Ð¸Ð·Ð²Ð¾Ð´ÑÑÐ²Ð¾ Ð½Ð° Ð·Ð°Ð²Ð¾Ð´Ðµ</div>
-            <div class="step-p">Ð¢Ð¾ÑÐ½Ð¾Ðµ Ð¸Ð·Ð³Ð¾ÑÐ¾Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¸Ð· Ð¾ÑÐ¸Ð½ÐºÐ¾Ð²Ð°Ð½Ð½Ð¾Ð¹ ÑÑÐ°Ð»Ð¸. ÐÐ¾Ð»Ð½Ð°Ñ ÑÐ±Ð¾ÑÐºÐ° Ñ Ð¾ÑÐ´ÐµÐ»ÐºÐ¾Ð¹, Ð¾ÐºÐ½Ð°Ð¼Ð¸ Ð¸ Ð´Ð²ÐµÑÑÐ¼Ð¸ â Ñ Ð½Ð°Ñ Ð½Ð° Ð·Ð°Ð²Ð¾Ð´Ðµ Ð² Ð¡Ð»Ð¾Ð²ÐµÐ½Ð¸Ð¸.</div>
+            <div class="step-h">Производство на заводе</div>
+            <div class="step-p">Точное изготовление из оцинкованной стали. Полная сборка с отделкой, окнами и дверями — у нас на заводе в Словении.</div>
           </div>
         </div>
         <div class="step fu d2">
           <div class="step-n">03</div>
           <div>
-            <div class="step-h">ÐÐ¾ÑÑÐ°Ð²ÐºÐ° Ð½Ð° Ð¼ÐµÑÑÐ¾</div>
-            <div class="step-p">ÐÑÐ¸Ð²Ð¾Ð·Ð¸Ð¼ Ð³Ð¾ÑÐ¾Ð²ÑÐ¹ Ð¾Ð±ÑÐµÐºÑ Ð½Ð° Ð²Ð°ÑÑ Ð»Ð¾ÐºÐ°ÑÐ¸Ñ. Ð Ð°Ð·Ð³ÑÑÐ·ÐºÐ° ÐºÑÐ°Ð½Ð¾Ð¼ â 30 Ð¼Ð¸Ð½ÑÑ. ÐÐ¸ÐºÐ°ÐºÐ¾Ð¹ Ð´Ð¾Ð»Ð³Ð¾Ð¹ ÑÑÑÐ¾Ð¹ÐºÐ¸ Ð½Ð° ÑÑÐ°ÑÑÐºÐµ.</div>
+            <div class="step-h">Доставка на место</div>
+            <div class="step-p">Привозим готовый объект на вашу локацию. Разгрузка краном — 30 минут. Никакой долгой стройки на участке.</div>
           </div>
         </div>
         <div class="step fu d3">
           <div class="step-n">04</div>
           <div>
-            <div class="step-h">ÐÐ¾ÑÐ¾Ð²Ð¾ Ðº Ð¶Ð¸Ð·Ð½Ð¸</div>
-            <div class="step-p">ÐÐ¾Ð´ÐºÐ»ÑÑÐ°ÐµÑÐµ ÐºÐ¾Ð¼Ð¼ÑÐ½Ð¸ÐºÐ°ÑÐ¸Ð¸ â Ð´Ð¾Ð¼ Ð³Ð¾ÑÐ¾Ð². ÐÐ°ÑÐ°Ð½ÑÐ¸Ñ ÐºÐ°ÑÐµÑÑÐ²Ð°, Ð½ÑÐ»ÐµÐ²Ð¾Ðµ ÑÐµÑÐ½Ð¸ÑÐµÑÐºÐ¾Ðµ Ð¾Ð±ÑÐ»ÑÐ¶Ð¸Ð²Ð°Ð½Ð¸Ðµ.</div>
+            <div class="step-h">Готово к жизни</div>
+            <div class="step-p">Подключаете коммуникации — дом готов. Гарантия качества, нулевое техническое обслуживание.</div>
           </div>
         </div>
       </div>
 
       <div class="process-img fu d2">
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FJ58wcwBbg8rP9sKeJSktoKNhM/hf_20260621_170547_f72489c7-f9d4-45a3-99a9-a8d341be6e34.png" alt="ÐÐ¾ÑÑÐ°Ð²ÐºÐ° ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑÐ°">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FJ58wcwBbg8rP9sKeJSktoKNhM/hf_20260621_170547_f72489c7-f9d4-45a3-99a9-a8d341be6e34.png" alt="Доставка контейнера">
       </div>
     </div>
   </div>
 </section>
 
-<!-- âââ SCROLL-DRIVEN VIDEO SECTION âââ -->
+<!-- ─── SCROLL-DRIVEN VIDEO SECTION ─── -->
 <div class="sdv-track" id="sdvTrack">
   <div class="sdv-sticky">
     <video class="sdv-video" id="sdvVideo" muted="" playsinline="" preload="auto">
@@ -1292,92 +1292,92 @@
     </video>
     <div class="sdv-overlay"></div>
     <div class="sdv-caption">
-      <div class="s-tag" style="margin-bottom:16px;">Ð¡Ð±Ð¾ÑÐºÐ° Ð´Ð¾Ð¼Ð°</div>
-      <h2 class="s-title" style="color:#fff;">ÐÐ· ÐºÐ°ÑÐºÐ°ÑÐ° â<br><em>Ð² Ð³Ð¾ÑÐ¾Ð²ÑÐ¹ Ð´Ð¾Ð¼</em></h2>
+      <div class="s-tag" style="margin-bottom:16px;">Сборка дома</div>
+      <h2 class="s-title" style="color:#fff;">Из каркаса —<br><em>в готовый дом</em></h2>
     </div>
-    <!-- Scroll hint Ð½Ð° scroll-driven ÑÐµÐºÑÐ¸Ð¸ -->
+    <!-- Scroll hint на scroll-driven секции -->
     <div class="scroll-hint" id="scrollHint">
       <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><rect x="1" y="1" width="14" height="22" rx="7" stroke="white" stroke-width="1.2"></rect><circle cx="8" cy="7" r="2" fill="white"><animate attributeName="cy" values="7;15;7" dur="1.8s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="1;0.2;1" dur="1.8s" repeatCount="indefinite"></animate></circle></svg>
-      <span>ÐÑÐ¾ÐºÑÑÑÐ¸ÑÑ</span>
+      <span>Прокрутить</span>
     </div>
   </div>
 </div>
 
-<!-- âââ PROFILI â Ð¡Ð¢Ð ÐÐÐ¢ÐÐÐ¬ÐÐÐ¯ Ð¢ÐÐ¥ÐÐÐÐÐÐÐ¯ âââ -->
+<!-- ─── PROFILI — СТРОИТЕЛЬНАЯ ТЕХНОЛОГИЯ ─── -->
 <section class="profili" id="profili">
   <div class="container">
     <div class="profili-head">
       <div>
-        <div class="s-tag fu">Ð¢ÐµÑÐ½Ð¾Ð»Ð¾Ð³Ð¸Ñ ÑÑÑÐ¾Ð¸ÑÐµÐ»ÑÑÑÐ²Ð°</div>
-        <h2 class="s-title fu d1">Hosekra Profili â<br><em>ÐºÐ¾Ð½ÑÑÑÑÐºÑÐ¸Ñ Ð½Ð¾Ð²Ð¾Ð¹ ÑÑÑ</em></h2>
-        <p class="s-sub fu d2">ÐÑÐ³ÐºÐ¸Ðµ ÑÑÐ°Ð»ÑÐ½ÑÐµ Ð¿ÑÐ¾ÑÐ¸Ð»Ð¸ Ñ ÑÐ¾ÑÐ½Ð¾ÑÑÑÑ Ð¸Ð·Ð³Ð¾ÑÐ¾Ð²Ð»ÐµÐ½Ð¸Ñ 1 Ð¼Ð¼. ÐÐ²ÑÐ¾Ð¼Ð°ÑÐ¸Ð·Ð¸ÑÐ¾Ð²Ð°Ð½Ð½Ð¾Ðµ Ð¿ÑÐ¾Ð¸Ð·Ð²Ð¾Ð´ÑÑÐ²Ð¾, Ð¼Ð¾Ð½ÑÐ°Ð¶ Ð±ÐµÐ· ÑÐ²Ð°ÑÐºÐ¸ â ÑÐ¾Ð»ÑÐºÐ¾ ÑÑÑÑÐ¿Ð¾Ð²ÑÑÑ. ÐÐ¸ÐºÐ°ÐºÐ¾Ð³Ð¾ Ð¾Ð±ÑÐ»ÑÐ¶Ð¸Ð²Ð°Ð½Ð¸Ñ.</p>
+        <div class="s-tag fu">Технология строительства</div>
+        <h2 class="s-title fu d1">Hosekra Profili —<br><em>конструкция новой эры</em></h2>
+        <p class="s-sub fu d2">Лёгкие стальные профили с точностью изготовления 1 мм. Автоматизированное производство, монтаж без сварки — только шуруповёрт. Никакого обслуживания.</p>
       </div>
       <div class="profili-props fu d2">
         <div class="pp">
           <div class="pp-icon">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L2 6v5c0 4 3 7 8 8 5-1 8-4 8-8V6L10 2z" stroke="var(--accent)" stroke-width="1.3"></path><path d="M7 10l2 2 4-4" stroke="var(--accent)" stroke-width="1.3" stroke-linecap="round"></path></svg>
           </div>
-          <div class="pp-title">Ð Ð°Ð·Ð¼ÐµÑÑ Ð¿Ð¾Ð´ Ð·Ð°ÐºÐ°Ð·</div>
-          <div class="pp-text">ÐÑÐ¾ÑÐ¸Ð»Ð¸ Ð¿Ð¾Ð´Ð±Ð¸ÑÐ°ÑÑÑÑ Ð¿Ð¾Ð´ ÑÑÐµÐ±Ð¾Ð²Ð°Ð½Ð¸Ñ ÐºÐ»Ð¸ÐµÐ½ÑÐ° Ñ ÑÐ¾ÑÐ½Ð¾ÑÑÑÑ Ð´Ð¾ 1 Ð¼Ð¼.</div>
+          <div class="pp-title">Размеры под заказ</div>
+          <div class="pp-text">Профили подбираются под требования клиента с точностью до 1 мм.</div>
         </div>
         <div class="pp">
           <div class="pp-icon">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="var(--accent)" stroke-width="1.3"></circle><path d="M10 6v4l3 2" stroke="var(--accent)" stroke-width="1.3" stroke-linecap="round"></path></svg>
           </div>
-          <div class="pp-title">ÐÑÑÑÑÐ°Ñ ÑÑÑÐ°Ð½Ð¾Ð²ÐºÐ°</div>
-          <div class="pp-text">ÐÑÐ¾ÑÐ¸Ð»Ð¸ Ð¿Ð¾ÑÑÐ°Ð²Ð»ÑÑÑÑÑ Ð¿Ð°Ð½ÐµÐ»ÑÐ¼Ð¸. ÐÐ´Ð¸Ð½ÑÑÐ²ÐµÐ½Ð½ÑÐ¹ Ð¸Ð½ÑÑÑÑÐ¼ÐµÐ½Ñ â ÑÑÑÑÐ¿Ð¾Ð²ÑÑÑ.</div>
+          <div class="pp-title">Быстрая установка</div>
+          <div class="pp-text">Профили поставляются панелями. Единственный инструмент — шуруповёрт.</div>
         </div>
         <div class="pp">
           <div class="pp-icon">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 10h14M10 3l7 7-7 7" stroke="var(--accent)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           </div>
-          <div class="pp-title">ÐÐµÐ· Ð¾Ð±ÑÐ»ÑÐ¶Ð¸Ð²Ð°Ð½Ð¸Ñ</div>
-          <div class="pp-text">ÐÐ°ÑÐµÑÑÐ²ÐµÐ½Ð½ÑÐµ Ð¼Ð°ÑÐµÑÐ¸Ð°Ð»Ñ Ð¸ Ð¸ÑÐ¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ Ð¾Ð±ÐµÑÐ¿ÐµÑÐ¸Ð²Ð°ÑÑ Ð´Ð¾Ð»Ð³Ð¸Ð¹ ÑÑÐ¾Ðº ÑÐ»ÑÐ¶Ð±Ñ Ð±ÐµÐ· Ð·Ð°ÑÑÐ°Ñ.</div>
+          <div class="pp-title">Без обслуживания</div>
+          <div class="pp-text">Качественные материалы и исполнение обеспечивают долгий срок службы без затрат.</div>
         </div>
         <div class="pp">
           <div class="pp-icon">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="1" stroke="var(--accent)" stroke-width="1.3"></rect><path d="M7 10h6M10 7v6" stroke="var(--accent)" stroke-width="1.3" stroke-linecap="round"></path></svg>
           </div>
-          <div class="pp-title">ÐÑÐ°Ð½Ð¾Ð¼ Ð½Ð° Ð¼ÐµÑÑÐ¾</div>
-          <div class="pp-text">ÐÐ¾ÑÑÐ°Ð²ÐºÐ° Ð¸ Ð²ÑÐ³ÑÑÐ·ÐºÐ° ÐºÑÐ°Ð½Ð¾Ð¼. ÐÐ¸Ð½Ð¸Ð¼ÑÐ¼ ÑÐµÑÐ½Ð¸ÐºÐ¸, Ð¼Ð°ÐºÑÐ¸Ð¼ÑÐ¼ ÑÐºÐ¾ÑÐ¾ÑÑÐ¸ Ð¼Ð¾Ð½ÑÐ°Ð¶Ð°.</div>
+          <div class="pp-title">Краном на место</div>
+          <div class="pp-text">Доставка и выгрузка краном. Минимум техники, максимум скорости монтажа.</div>
         </div>
       </div>
     </div>
 
-    <!-- Ð¡Ð»Ð°Ð¹Ð´ÐµÑ Ð¿ÑÐ¾ÐµÐºÑÐ¾Ð² -->
+    <!-- Слайдер проектов -->
     <div class="profili-slider-wrap fu d1">
-      <div class="profili-slider" id="profiliSlider">
+      <div class="profili-slider" id="profiliSlider" style="transform: translateX(0px);">
         <div class="ps-item">
-          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/terasa_mobilne_hiske_1.jpg" alt="Ð¢ÐµÑÑÐ°ÑÐ° Ð¼Ð¾Ð±Ð¸Ð»ÑÐ½Ð¾Ð³Ð¾ Ð´Ð¾Ð¼Ð°">
-          <div class="ps-label">Ð¢ÐµÑÑÐ°ÑÐ° Ð¼Ð¾Ð±Ð¸Ð»ÑÐ½Ð¾Ð³Ð¾ Ð´Ð¾Ð¼Ð°</div>
+          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/terasa_mobilne_hiske_1.jpg" alt="Терраса мобильного дома">
+          <div class="ps-label">Терраса мобильного дома</div>
         </div>
         <div class="ps-item">
-          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/konstrukcija_garaze_2.jpg" alt="ÐÐ¾Ð½ÑÑÑÑÐºÑÐ¸Ñ Ð³Ð°ÑÐ°Ð¶Ð°">
-          <div class="ps-label">ÐÐ¾Ð½ÑÑÑÑÐºÑÐ¸Ñ Ð³Ð°ÑÐ°Ð¶Ð°</div>
+          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/konstrukcija_garaze_2.jpg" alt="Конструкция гаража">
+          <div class="ps-label">Конструкция гаража</div>
         </div>
         <div class="ps-item">
-          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/ostresje_hise_iz_profilov_3.jpg" alt="ÐÑÐ¾Ð²Ð»Ñ Ð´Ð¾Ð¼Ð° Ð¸Ð· Ð¿ÑÐ¾ÑÐ¸Ð»ÐµÐ¹">
-          <div class="ps-label">ÐÑÐ¾Ð²Ð»Ñ Ð¸Ð· Ð¿ÑÐ¾ÑÐ¸Ð»ÐµÐ¹</div>
+          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/ostresje_hise_iz_profilov_3.jpg" alt="Кровля дома из профилей">
+          <div class="ps-label">Кровля из профилей</div>
         </div>
         <div class="ps-item">
-          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/bivalni_objekt_4.jpg" alt="ÐÐ¸Ð»Ð¾Ð¹ Ð¾Ð±ÑÐµÐºÑ">
-          <div class="ps-label">ÐÐ¸Ð»Ð¾Ð¹ Ð¾Ð±ÑÐµÐºÑ</div>
+          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/bivalni_objekt_4.jpg" alt="Жилой объект">
+          <div class="ps-label">Жилой объект</div>
         </div>
         <div class="ps-item">
-          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/stopnice_iz_profilov_5.jpg" alt="ÐÐµÑÑÐ½Ð¸ÑÐ° Ð¸Ð· Ð¿ÑÐ¾ÑÐ¸Ð»ÐµÐ¹">
-          <div class="ps-label">ÐÐµÑÑÐ½Ð¸ÑÐ° Ð¸Ð· Ð¿ÑÐ¾ÑÐ¸Ð»ÐµÐ¹</div>
+          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/stopnice_iz_profilov_5.jpg" alt="Лестница из профилей">
+          <div class="ps-label">Лестница из профилей</div>
         </div>
         <div class="ps-item">
-          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/konstrukcija_nadstreska_terase_8.jpg" alt="ÐÐ¾Ð½ÑÑÑÑÐºÑÐ¸Ñ Ð½Ð°Ð²ÐµÑÐ°">
-          <div class="ps-label">ÐÐ¾Ð½ÑÑÑÑÐºÑÐ¸Ñ Ð½Ð°Ð²ÐµÑÐ°</div>
+          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/konstrukcija_nadstreska_terase_8.jpg" alt="Конструкция навеса">
+          <div class="ps-label">Конструкция навеса</div>
         </div>
         <div class="ps-item">
-          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/konstrukcija_skladisce_profili_9.jpg" alt="Ð¡ÐºÐ»Ð°Ð´ Ð¸Ð· Ð¿ÑÐ¾ÑÐ¸Ð»ÐµÐ¹">
-          <div class="ps-label">Ð¡ÐºÐ»Ð°Ð´ÑÐºÐ¾Ð¹ Ð¾Ð±ÑÐµÐºÑ</div>
+          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/konstrukcija_skladisce_profili_9.jpg" alt="Склад из профилей">
+          <div class="ps-label">Складской объект</div>
         </div>
         <div class="ps-item">
-          <img src="https://www.hosekra.com/profili/wp-content/uploads/gospodarski-objekt-1-1024x768.jpg" alt="Ð¥Ð¾Ð·ÑÐ¹ÑÑÐ²ÐµÐ½Ð½ÑÐ¹ Ð¾Ð±ÑÐµÐºÑ">
-          <div class="ps-label">Ð¥Ð¾Ð·ÑÐ¹ÑÑÐ²ÐµÐ½Ð½ÑÐ¹ Ð¾Ð±ÑÐµÐºÑ</div>
+          <img src="https://www.hosekra.com/profili/wp-content/uploads/gospodarski-objekt-1-1024x768.jpg" alt="Хозяйственный объект">
+          <div class="ps-label">Хозяйственный объект</div>
         </div>
       </div>
       <button class="ps-btn ps-prev" id="psPrev">
@@ -1390,169 +1390,169 @@
   </div>
 </section>
 
-<!-- âââ ABOUT GOLD STRIPE âââ -->
+<!-- ─── ABOUT GOLD STRIPE ─── -->
 <section class="about" id="about">
   <div class="container">
     <div>
-      <h2 class="about-h">37 Ð»ÐµÑ ÑÑÑÐ¾Ð¸Ð¼ Ð´Ð¾Ð¼Ð°,<br>ÐºÐ¾ÑÐ¾ÑÑÐµ ÑÐ»ÑÐ¶Ð°Ñ Ð´ÐµÑÑÑÐ¸Ð»ÐµÑÐ¸ÑÐ¼Ð¸</h2>
-      <p class="about-p">Hosekra â ÑÐ»Ð¾Ð²ÐµÐ½ÑÐºÐ°Ñ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ñ Ð¿Ð¾Ð»Ð½Ð¾Ð³Ð¾ ÑÐ¸ÐºÐ»Ð°. ÐÑÐ¾ÐµÐºÑÐ¸ÑÑÐµÐ¼, Ð¿ÑÐ¾Ð¸Ð·Ð²Ð¾Ð´Ð¸Ð¼, Ð´Ð¾ÑÑÐ°Ð²Ð»ÑÐµÐ¼. ÐÐµÐ· Ð¿Ð¾ÑÑÐµÐ´Ð½Ð¸ÐºÐ¾Ð², Ñ Ð¿Ð¾Ð»Ð½Ð¾Ð¹ Ð³Ð°ÑÐ°Ð½ÑÐ¸ÐµÐ¹ ÐºÐ°ÑÐµÑÑÐ²Ð° ÐºÐ°Ð¶Ð´Ð¾Ð³Ð¾ Ð¸Ð·Ð´ÐµÐ»Ð¸Ñ Ð¸ ÑÐ³Ð»ÐµÑÐ¾Ð´Ð½Ð¾ Ð½ÐµÐ¹ÑÑÐ°Ð»ÑÐ½ÑÐ¼ Ð¿ÑÐ¾Ð¸Ð·Ð²Ð¾Ð´ÑÑÐ²Ð¾Ð¼.</p>
+      <h2 class="about-h">37 лет строим дома,<br>которые служат десятилетиями</h2>
+      <p class="about-p">Hosekra — словенская компания полного цикла. Проектируем, производим, доставляем. Без посредников, с полной гарантией качества каждого изделия и углеродно нейтральным производством.</p>
     </div>
     <div class="about-nums">
       <div class="fu">
         <div class="a-num">37+</div>
-        <div class="a-label">ÐÐµÑ Ð½Ð° ÑÑÐ½ÐºÐµ</div>
+        <div class="a-label">Лет на рынке</div>
       </div>
       <div class="fu d1">
         <div class="a-num">1000+</div>
-        <div class="a-label">ÐÑÐ¾ÐµÐºÑÐ¾Ð² Ð¿Ð¾ ÐÐ²ÑÐ¾Ð¿Ðµ</div>
+        <div class="a-label">Проектов по Европе</div>
       </div>
       <div class="fu d2">
         <div class="a-num">30'</div>
-        <div class="a-label">ÐÐ¾Ð½ÑÐ°Ð¶ Ð½Ð° Ð¼ÐµÑÑÐµ</div>
+        <div class="a-label">Монтаж на месте</div>
       </div>
       <div class="fu d3">
         <div class="a-num">1%</div>
-        <div class="a-label">Ð£Ð³Ð»ÐµÑÐ¾Ð´Ð½Ð¾ Ð½ÐµÐ¹ÑÑÐ°Ð»ÑÐ½Ñ</div>
+        <div class="a-label">Углеродно нейтральны</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- âââ ÐÐ ÐÐÐÐ£Ð©ÐÐ¡Ð¢ÐÐ âââ -->
+<!-- ─── ПРЕИМУЩЕСТВА ─── -->
 <section class="features" id="features">
   <div class="container">
     <div class="features-head">
-      <div class="s-tag fu">ÐÐ¾ÑÐµÐ¼Ñ Hosekra</div>
-      <h2 class="s-title fu d1">ÐÐ°ÑÐµÑÑÐ²Ð¾, ÐºÐ¾ÑÐ¾ÑÐ¾Ðµ<br><em>Ð³Ð¾Ð²Ð¾ÑÐ¸Ñ ÑÐ°Ð¼Ð¾ Ð·Ð° ÑÐµÐ±Ñ</em></h2>
+      <div class="s-tag fu">Почему Hosekra</div>
+      <h2 class="s-title fu d1">Качество, которое<br><em>говорит само за себя</em></h2>
     </div>
     <div class="feat-grid">
       <div class="feat-card fu">
         <div class="feat-icon">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2L3 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6L11 2z" stroke="var(--accent)" stroke-width="1.4" stroke-linejoin="round"></path></svg>
         </div>
-        <div class="feat-title">15 Ð»ÐµÑ Ð³Ð°ÑÐ°Ð½ÑÐ¸Ð¸</div>
-        <div class="feat-text">ÐÐ° ÐºÐ°Ð¶Ð´ÑÐ¹ Ð¿ÑÐ¾Ð´ÑÐºÑ Hosekra ÑÐ°ÑÐ¿ÑÐ¾ÑÑÑÐ°Ð½ÑÐµÑÑÑ Ð¿Ð¾Ð»Ð½Ð°Ñ Ð³Ð°ÑÐ°Ð½ÑÐ¸Ñ ÐºÐ°ÑÐµÑÑÐ²Ð° Ð½Ð° 15 Ð»ÐµÑ.</div>
+        <div class="feat-title">15 лет гарантии</div>
+        <div class="feat-text">На каждый продукт Hosekra распространяется полная гарантия качества на 15 лет.</div>
       </div>
       <div class="feat-card fu d1">
         <div class="feat-icon">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="var(--accent)" stroke-width="1.4"></circle><path d="M11 6v5l3 3" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round"></path></svg>
         </div>
-        <div class="feat-title">30 Ð¼Ð¸Ð½ÑÑ Ð¼Ð¾Ð½ÑÐ°Ð¶Ð°</div>
-        <div class="feat-text">ÐÐ¾Ð»Ð½Ð¾ÑÑÑÑ Ð³Ð¾ÑÐ¾Ð²Ð¾Ðµ Ð¸Ð·Ð´ÐµÐ»Ð¸Ðµ Ð¿ÑÐ¸Ð²Ð¾Ð·Ð¸Ð¼ Ð¸ ÑÑÑÐ°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÐ¼ ÐºÑÐ°Ð½Ð¾Ð¼. ÐÐ¸ÐºÐ°ÐºÐ¾Ð¹ ÑÑÑÐ¾Ð¹ÐºÐ¸ Ð½Ð° Ð¼ÐµÑÑÐµ.</div>
+        <div class="feat-title">30 минут монтажа</div>
+        <div class="feat-text">Полностью готовое изделие привозим и устанавливаем краном. Никакой стройки на месте.</div>
       </div>
       <div class="feat-card fu d2">
         <div class="feat-icon">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2" y="5" width="18" height="14" rx="1.5" stroke="var(--accent)" stroke-width="1.4"></rect><path d="M7 5V3h8v2" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round"></path><path d="M2 10h18" stroke="var(--accent)" stroke-width="1.4"></path></svg>
         </div>
-        <div class="feat-title">ÐÐ¾Ð»Ð½ÑÐ¹ ÐºÐ°ÑÐ°Ð»Ð¾Ð³</div>
-        <div class="feat-text">ÐÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑÑ, Ð³Ð°ÑÐ°Ð¶Ð¸, Ð½Ð°Ð´ÑÑÑÐµÑÐºÐ¸, Ð¼Ð¾Ð´ÑÐ»ÑÐ½ÑÐµ Ð´Ð¾Ð¼Ð° â Ð²ÑÑ Ð² Ð¾Ð´Ð½Ð¾Ð¼ Ð¼ÐµÑÑÐµ, Ð¾Ñ Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ð¿ÑÐ¾Ð¸Ð·Ð²Ð¾Ð´Ð¸ÑÐµÐ»Ñ.</div>
+        <div class="feat-title">Полный каталог</div>
+        <div class="feat-text">Контейнеры, гаражи, надстрешки, модульные дома — всё в одном месте, от одного производителя.</div>
       </div>
       <div class="feat-card fu d3">
         <div class="feat-icon">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 16l4-4 3 3 4-5 3 6" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path><rect x="2" y="2" width="18" height="18" rx="1.5" stroke="var(--accent)" stroke-width="1.4"></rect></svg>
         </div>
-        <div class="feat-title">Ð¨Ð¸ÑÐ¾ÐºÐ¸Ð¹ Ð²ÑÐ±Ð¾Ñ ÑÐ²ÐµÑÐ¾Ð²</div>
-        <div class="feat-text">ÐÐ½Ð¾Ð¶ÐµÑÑÐ²Ð¾ ÑÐ²ÐµÑÐ¾Ð² Ð°Ð²ÑÐ¾Ð¼Ð¾Ð±Ð¸Ð»ÑÐ½Ð¾Ð¹ Ð¾ÐºÑÐ°ÑÐºÐ¸. ÐÐ¾Ð´Ð±Ð¸ÑÐ°ÐµÐ¼ Ð¿Ð¾Ð´ Ð²Ð°Ñ ÑÐ°ÑÐ°Ð´ Ð¸ ÑÑÐ°ÑÑÐ¾Ðº.</div>
+        <div class="feat-title">Широкий выбор цветов</div>
+        <div class="feat-text">Множество цветов автомобильной окраски. Подбираем под ваш фасад и участок.</div>
       </div>
       <div class="feat-card fu d4">
         <div class="feat-icon">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2v4M11 16v4M2 11h4M16 11h4" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round"></path><circle cx="11" cy="11" r="5" stroke="var(--accent)" stroke-width="1.4"></circle></svg>
         </div>
-        <div class="feat-title">Ð­ÐºÐ¾Ð»Ð¾Ð³Ð¸ÑÐ½Ð¾Ðµ Ð¿ÑÐ¾Ð¸Ð·Ð²Ð¾Ð´ÑÑÐ²Ð¾</div>
-        <div class="feat-text">Ð¡Ð»Ð¾Ð²ÐµÐ½ÑÐºÐ¾Ðµ Ð¿ÑÐ¾Ð¸Ð·Ð²Ð¾Ð´ÑÑÐ²Ð¾ Ñ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑÐ½ÑÐ¼ ÑÐ³Ð»ÐµÑÐ¾Ð´Ð½ÑÐ¼ ÑÐ»ÐµÐ´Ð¾Ð¼. Ð¡ÑÐ°Ð»ÑÐ½ÑÐµ ÐºÐ¾Ð½ÑÑÑÑÐºÑÐ¸Ð¸ Ð¿Ð¾Ð»Ð½Ð¾ÑÑÑÑ Ð¿ÐµÑÐµÑÐ°Ð±Ð°ÑÑÐ²Ð°ÐµÐ¼Ñ.</div>
+        <div class="feat-title">Экологичное производство</div>
+        <div class="feat-text">Словенское производство с минимальным углеродным следом. Стальные конструкции полностью перерабатываемы.</div>
       </div>
       <div class="feat-card fu d1">
         <div class="feat-icon">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 11l8 8 8-8M11 3v16" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         </div>
-        <div class="feat-title">ÐÐ°ÑÐ¸ÑÐ° Ð¾Ñ Ð½ÐµÐ¿Ð¾Ð³Ð¾Ð´Ñ</div>
-        <div class="feat-text">Ð¡ÑÐ¾Ð¹ÐºÐ¾ÑÑÑ Ðº Ð³ÑÐ°Ð´Ñ, ÑÐ¸Ð»ÑÐ½Ð¾Ð¼Ñ Ð²ÐµÑÑÑ, ÑÐ½ÐµÐ³Ñ Ð¸ ÑÐ»ÑÑÑÐ°ÑÐ¸Ð¾Ð»ÐµÑÑ. EH-ÐºÐ¾Ð½ÑÑÑÑÐºÑÐ¸Ñ Ð²ÑÐ´ÐµÑÐ¶Ð¸Ð²Ð°ÐµÑ ÑÐºÑÑÑÐµÐ¼Ð°Ð»ÑÐ½ÑÐµ ÑÑÐ»Ð¾Ð²Ð¸Ñ.</div>
+        <div class="feat-title">Защита от непогоды</div>
+        <div class="feat-text">Стойкость к граду, сильному ветру, снегу и ультрафиолету. EH-конструкция выдерживает экстремальные условия.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- âââ ÐÐÐ ÐÐÐ Ð ÐÐÐÐ¡Ð¢Ð ÐÐ¨ÐÐ âââ -->
+<!-- ─── ГАРАЖИ И НАДСТРЕШКИ ─── -->
 <section class="garages" id="garages">
   <div class="container">
     <div class="garages-head">
       <div>
-        <div class="s-tag fu">ÐÐ°ÑÐ°Ð¶Ð¸ Ð¸ ÐÐ°Ð´ÑÑÑÐµÑÐºÐ¸</div>
-        <h2 class="s-title fu d1">ÐÐ°ÑÐ¸ÑÐ° Ð´Ð»Ñ Ð²Ð°ÑÐµÐ³Ð¾<br><em>Ð°Ð²ÑÐ¾Ð¼Ð¾Ð±Ð¸Ð»Ñ</em></h2>
+        <div class="s-tag fu">Гаражи и Надстрешки</div>
+        <h2 class="s-title fu d1">Защита для вашего<br><em>автомобиля</em></h2>
       </div>
-      <p class="s-sub fu d2">ÐÐµÑÐ°Ð»Ð»Ð¸ÑÐµÑÐºÐ¸Ðµ Ð³Ð°ÑÐ°Ð¶Ð¸ Ð¸ Ð½Ð°Ð²ÐµÑÑ Hosekra â Ð±ÑÑÑÑÐ¾Ðµ, Ð´Ð¾Ð»Ð³Ð¾Ð²ÐµÑÐ½Ð¾Ðµ Ð¸ ÑÐºÐ¾Ð½Ð¾Ð¼Ð¸ÑÐ½Ð¾Ðµ ÑÐµÑÐµÐ½Ð¸Ðµ. ÐÐ¾Ð½ÑÐ°Ð¶ Ð±ÐµÐ· ÑÑÐ½Ð´Ð°Ð¼ÐµÐ½ÑÐ°, 15 Ð»ÐµÑ Ð³Ð°ÑÐ°Ð½ÑÐ¸Ð¸.</p>
+      <p class="s-sub fu d2">Металлические гаражи и навесы Hosekra — быстрое, долговечное и экономичное решение. Монтаж без фундамента, 15 лет гарантии.</p>
     </div>
 
     <div class="garages-grid">
       <div class="garage-card fu">
         <div class="garage-img">
           <div class="garage-badge">G10</div>
-          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/garaza-hosekra-40-e1756367670698-548x433.jpg" alt="ÐÐ´Ð¸Ð½Ð¾ÑÐ½ÑÐ¹ Ð³Ð°ÑÐ°Ð¶ Hosekra G10">
+          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/garaza-hosekra-40-e1756367670698-548x433.jpg" alt="Одиночный гараж Hosekra G10">
         </div>
         <div class="garage-body">
-          <div class="garage-name">ÐÐ´Ð¸Ð½Ð¾ÑÐ½ÑÐ¹ Ð³Ð°ÑÐ°Ð¶</div>
-          <div class="garage-desc">Ð£Ð½Ð¸Ð²ÐµÑÑÐ°Ð»ÑÐ½ÑÐ¹ Ð³Ð°ÑÐ°Ð¶ Ð´Ð»Ñ Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ð°Ð²ÑÐ¾Ð¼Ð¾Ð±Ð¸Ð»Ñ. ÐÐ½ÑÑÐ°ÑÐ¸Ñ Ð¸Ð»Ð¸ Ð²ÑÐ±Ð¾Ñ Ð¸Ð· Ð¿Ð°Ð»Ð¸ÑÑÑ ÑÐ²ÐµÑÐ¾Ð².</div>
+          <div class="garage-name">Одиночный гараж</div>
+          <div class="garage-desc">Универсальный гараж для одного автомобиля. Антрацит или выбор из палитры цветов.</div>
         </div>
       </div>
       <div class="garage-card fu d1">
         <div class="garage-img">
           <div class="garage-badge">G20</div>
-          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/garaza-hosekra-94-e1756367885818-548x438.jpg" alt="ÐÐ°ÑÐ°Ð¶ Ñ Ð½Ð°Ð²ÐµÑÐ¾Ð¼ Hosekra G20">
+          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/garaza-hosekra-94-e1756367885818-548x438.jpg" alt="Гараж с навесом Hosekra G20">
         </div>
         <div class="garage-body">
-          <div class="garage-name">Ð¡ Ð½Ð°Ð²ÐµÑÐ¾Ð¼ Ð½Ð°Ð´ Ð²Ð¾ÑÐ¾ÑÐ°Ð¼Ð¸</div>
-          <div class="garage-desc">ÐÑÐ°ÑÐ¸Ð²ÑÐ¹ Ð²Ð¸Ð´ Ð¸ Ð·Ð°ÑÐ¸ÑÐ° Ð²Ð¾ÑÐ¾Ñ Ð¾Ñ Ð´Ð¾Ð¶Ð´Ñ. ÐÐ°Ð²ÐµÑ ÑÐ¿ÐµÑÐµÐ´Ð¸ Ð²ÑÑÑÐ¾ÐµÐ½ Ð² ÐºÐ¾Ð½ÑÑÑÑÐºÑÐ¸Ñ.</div>
+          <div class="garage-name">С навесом над воротами</div>
+          <div class="garage-desc">Красивый вид и защита ворот от дождя. Навес спереди встроен в конструкцию.</div>
         </div>
       </div>
       <div class="garage-card fu d2">
         <div class="garage-img">
           <div class="garage-badge">G40</div>
-          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/DSC00022-e1756368115494-548x423.jpg" alt="ÐÐ°ÑÐ°Ð¶ Ñ ÑÐ¾Ð»ÑÑÑÐ°Ð²Ð½ÑÐ¼Ð¸ Hosekra G40">
+          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/DSC00022-e1756368115494-548x423.jpg" alt="Гараж с рольставнями Hosekra G40">
         </div>
         <div class="garage-body">
-          <div class="garage-name">Ð¡ ÑÐ¾Ð»ÑÑÑÐ°Ð²Ð½ÑÐ¼Ð¸</div>
-          <div class="garage-desc">ÐÐ¾Ð»ÑÑÐ¸Ðµ Ð²Ð¾ÑÐ¾ÑÐ° Ð´Ð»Ñ ÑÐ´Ð¾Ð±Ð½Ð¾Ð¹ Ð¿Ð°ÑÐºÐ¾Ð²ÐºÐ¸. Ð Ð¾Ð»Ð»ÐµÑ-ÑÑÐ¾ÑÑ Ð²ÑÑÑÐ¾ÐµÐ½Ñ Ð² ÐºÐ¾Ð½ÑÑÑÑÐºÑÐ¸Ñ.</div>
+          <div class="garage-name">С рольставнями</div>
+          <div class="garage-desc">Большие ворота для удобной парковки. Роллер-шторы встроены в конструкцию.</div>
         </div>
       </div>
       <div class="garage-card fu d3">
         <div class="garage-img">
           <div class="garage-badge">G70</div>
-          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/garaza-hosekra-63-e1756367968886-548x417.jpg" alt="ÐÐ°ÑÐ°Ð¶ Ñ Ð¸Ð·Ð¾Ð»ÑÑÐ¸ÐµÐ¹ Hosekra G70">
+          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/garaza-hosekra-63-e1756367968886-548x417.jpg" alt="Гараж с изоляцией Hosekra G70">
         </div>
         <div class="garage-body">
-          <div class="garage-name">Ð¡ Ð¸Ð·Ð¾Ð»ÑÑÐ¸ÐµÐ¹</div>
-          <div class="garage-desc">5 ÑÐ¼ ÑÐµÐ¿Ð»Ð¾Ð²Ð¾Ð¹ Ð¸Ð·Ð¾Ð»ÑÑÐ¸Ð¸. ÐÐ°ÑÐ¸ÑÐ° Ð¾Ñ Ð¼Ð¾ÑÐ¾Ð·Ð° Ð¸ Ð»ÐµÑÐ½ÐµÐ³Ð¾ Ð·Ð½Ð¾Ñ.</div>
+          <div class="garage-name">С изоляцией</div>
+          <div class="garage-desc">5 см тепловой изоляции. Защита от мороза и летнего зноя.</div>
         </div>
       </div>
       <div class="garage-card fu d4">
         <div class="garage-img">
           <div class="garage-badge">G80</div>
-          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/siroka-gaaza-e1756367622265-548x415.jpg" alt="Ð¨Ð¸ÑÐ¾ÐºÐ¸Ð¹ Ð´Ð²Ð¾Ð¹Ð½Ð¾Ð¹ Ð³Ð°ÑÐ°Ð¶ Hosekra G80">
+          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/siroka-gaaza-e1756367622265-548x415.jpg" alt="Широкий двойной гараж Hosekra G80">
         </div>
         <div class="garage-body">
-          <div class="garage-name">Ð¨Ð¸ÑÐ¾ÐºÐ¸Ð¹ Ð´Ð²Ð¾Ð¹Ð½Ð¾Ð¹</div>
-          <div class="garage-desc">ÐÐµÑÑÐ° Ð´Ð»Ñ Ð´Ð²ÑÑ Ð¼Ð°ÑÐ¸Ð½ Ð¿Ð»ÑÑ Ð¼Ð¾ÑÐ¾ÑÐ¸ÐºÐ». ÐÐ¾Ð´ÑÐ¾Ð´Ð¸Ñ ÐºÐ°Ðº Ð¼Ð°ÑÑÐµÑÑÐºÐ°Ñ.</div>
+          <div class="garage-name">Широкий двойной</div>
+          <div class="garage-desc">Места для двух машин плюс мотоцикл. Подходит как мастерская.</div>
         </div>
       </div>
       <div class="garage-card fu d1">
         <div class="garage-img">
           <div class="garage-badge">G90</div>
-          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/kovinska-garaza-168-548x411.jpg" alt="ÐÐ°ÑÐ°Ð¶ Ñ Ð½Ð°Ð²ÐµÑÐ¾Ð¼ ÑÐ±Ð¾ÐºÑ Hosekra G90">
+          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/kovinska-garaza-168-548x411.jpg" alt="Гараж с навесом сбоку Hosekra G90">
         </div>
         <div class="garage-body">
-          <div class="garage-name">Ð¡ Ð½Ð°Ð²ÐµÑÐ¾Ð¼ ÑÐ±Ð¾ÐºÑ</div>
-          <div class="garage-desc">ÐÐ°ÐºÑÑÑÐ°Ñ ÑÐ°ÑÑÑ Ð´Ð»Ñ ÑÑÐ°Ð½ÐµÐ½Ð¸Ñ + Ð¾ÑÐºÑÑÑÑÐ¹ Ð½Ð°Ð²ÐµÑ ÑÑÐ´Ð¾Ð¼. ÐÐ¿ÑÐ¸Ð¼Ð°Ð»ÑÐ½Ð¾ Ð´Ð»Ñ ÑÑÐ°ÑÑÐºÐ°.</div>
+          <div class="garage-name">С навесом сбоку</div>
+          <div class="garage-desc">Закрытая часть для хранения + открытый навес рядом. Оптимально для участка.</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- âââ ÐÐ¢ÐÐ«ÐÐ« âââ -->
+<!-- ─── ОТЗЫВЫ ─── -->
 <section class="reviews" id="reviews">
   <div class="container">
-    <div class="s-tag fu">ÐÑÐ·ÑÐ²Ñ ÐºÐ»Ð¸ÐµÐ½ÑÐ¾Ð²</div>
-    <h2 class="s-title fu d1">Ð§ÑÐ¾ Ð³Ð¾Ð²Ð¾ÑÑÑ<br><em>Ð½Ð°ÑÐ¸ ÐºÐ»Ð¸ÐµÐ½ÑÑ</em></h2>
+    <div class="s-tag fu">Отзывы клиентов</div>
+    <h2 class="s-title fu d1">Что говорят<br><em>наши клиенты</em></h2>
 
     <div class="reviews-grid">
       <div class="review-card fu">
@@ -1565,12 +1565,12 @@
             <path d="M71 1l1.5 4.5H77L73 8.5l1.5 4.5L71 10.5 67.5 13 69 8.5 65 6h4.5z" fill="var(--accent)"></path>
           </svg>
         </div>
-        <blockquote class="review-text">"Ð ÐµÑÐ¸Ð» Ð°ÑÐµÐ½Ð´Ð¾Ð²Ð°ÑÑ, ÑÑÐ¾Ð±Ñ Ð¿ÑÐ¾Ð²ÐµÑÐ¸ÑÑ Ð¿ÑÐ¾ÑÐ½Ð¾ÑÑÑ Ð¸ ÑÑÑÐ¾Ð¹ÑÐ¸Ð²Ð¾ÑÑÑ Ð³Ð°ÑÐ°Ð¶Ð° Ðº Ð²ÐµÑÑÑ. ÐÑÐ¿Ð¾Ð»ÑÐ·ÑÑ ÐµÐ³Ð¾ Ð´Ð»Ñ Ð¿ÑÐ¸ÑÐµÐ¿Ð° Ñ Ð²ÐµÑÐ°Ð¼Ð¸. Ð Ð¸ÑÐ¾Ð³Ðµ Ð±ÑÐ» Ð¿Ð¾Ð»Ð½Ð¾ÑÑÑÑ Ð´Ð¾Ð²Ð¾Ð»ÐµÐ½ ÐºÐ°ÑÐµÑÑÐ²Ð¾Ð¼ Ð¸ Ð¸ÑÐ¿Ð¾Ð»Ð½ÐµÐ½Ð¸ÐµÐ¼."</blockquote>
+        <blockquote class="review-text">"Решил арендовать, чтобы проверить прочность и устойчивость гаража к ветру. Использую его для прицепа с вещами. В итоге был полностью доволен качеством и исполнением."</blockquote>
         <div class="review-author">
           <div class="review-avatar">M</div>
           <div>
             <div class="review-name">Marko</div>
-            <div class="review-loc">ÐÐ¾ÑÐµÐ½ÑÐºÐ°, Ð¡Ð»Ð¾Ð²ÐµÐ½Ð¸Ñ</div>
+            <div class="review-loc">Горенска, Словения</div>
           </div>
         </div>
       </div>
@@ -1585,12 +1585,12 @@
             <path d="M71 1l1.5 4.5H77L73 8.5l1.5 4.5L71 10.5 67.5 13 69 8.5 65 6h4.5z" fill="var(--accent)"></path>
           </svg>
         </div>
-        <blockquote class="review-text">"ÐÑÐ¿Ð¸Ð» Ð¶Ð¸Ð»Ð¾Ð¹ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑ Ð´Ð»Ñ Ð´Ð°ÑÐ¸. ÐÐ¾ÑÑÐ°Ð²Ð¸Ð»Ð¸ Ð¸ ÑÑÑÐ°Ð½Ð¾Ð²Ð¸Ð»Ð¸ Ð·Ð° Ð¾Ð´Ð¸Ð½ Ð´ÐµÐ½Ñ. ÐÐ°ÑÐµÑÑÐ²Ð¾ Ð¼Ð°ÑÐµÑÐ¸Ð°Ð»Ð¾Ð² Ð²ÑÑÐµ Ð¾Ð¶Ð¸Ð´Ð°Ð½Ð¸Ð¹ â Ð°Ð½ÑÑÐ°ÑÐ¸ÑÐ¾Ð²ÑÐ¹ ÑÐ°ÑÐ°Ð´ ÑÐ¼Ð¾ÑÑÐ¸ÑÑÑ Ð¾ÑÐµÐ½Ñ ÑÑÐ¸Ð»ÑÐ½Ð¾."</blockquote>
+        <blockquote class="review-text">"Купил жилой контейнер для дачи. Доставили и установили за один день. Качество материалов выше ожиданий — антрацитовый фасад смотрится очень стильно."</blockquote>
         <div class="review-author">
           <div class="review-avatar">A</div>
           <div>
             <div class="review-name">Ana</div>
-            <div class="review-loc">ÐÑÐ±Ð»ÑÐ½Ð°, Ð¡Ð»Ð¾Ð²ÐµÐ½Ð¸Ñ</div>
+            <div class="review-loc">Любляна, Словения</div>
           </div>
         </div>
       </div>
@@ -1605,12 +1605,12 @@
             <path d="M71 1l1.5 4.5H77L73 8.5l1.5 4.5L71 10.5 67.5 13 69 8.5 65 6h4.5z" fill="var(--accent)"></path>
           </svg>
         </div>
-        <blockquote class="review-text">"ÐÐ°ÐºÐ°Ð·Ð°Ð» Ð¼Ð¾Ð´ÑÐ»ÑÐ½ÑÐ¹ Ð´Ð¾Ð¼ Living H50 Ð´Ð»Ñ ÑÑÐ½Ð°. ÐÐ¾Ð½ÑÐ°Ð¶ Ð¿ÑÐ¾ÑÑÐ» Ð±ÑÑÑÑÐ¾ Ð¸ ÑÐ¸ÑÑÐ¾. Ð¡Ð¾ÑÐµÐ´Ð¸ ÑÐ¶Ðµ ÑÐ¿ÑÐ°ÑÐ¸Ð²Ð°ÑÑ ÐºÐ¾Ð½ÑÐ°ÐºÑÑ â Ð²ÑÐ³Ð»ÑÐ´Ð¸Ñ Ð»ÑÑÑÐµ, ÑÐµÐ¼ Ð¾Ð±ÑÑÐ½ÑÐ¹ Ð´Ð¾Ð¼."</blockquote>
+        <blockquote class="review-text">"Заказал модульный дом Living H50 для сына. Монтаж прошёл быстро и чисто. Соседи уже спрашивают контакты — выглядит лучше, чем обычный дом."</blockquote>
         <div class="review-author">
           <div class="review-avatar">T</div>
           <div>
-            <div class="review-name">TomaÅ¾</div>
-            <div class="review-loc">ÐÐ°ÑÐ¸Ð±Ð¾Ñ, Ð¡Ð»Ð¾Ð²ÐµÐ½Ð¸Ñ</div>
+            <div class="review-name">Tomaž</div>
+            <div class="review-loc">Марибор, Словения</div>
           </div>
         </div>
       </div>
@@ -1618,66 +1618,66 @@
   </div>
 </section>
 
-<!-- âââ GALLERY âââ -->
+<!-- ─── GALLERY ─── -->
 <section class="gallery" id="gallery">
   <div class="container">
-    <div class="s-tag fu">ÐÐ°Ð»ÐµÑÐµÑ</div>
-    <h2 class="s-title fu d1">ÐÐ°ÑÐ¸ <em>ÑÐ°Ð±Ð¾ÑÑ</em></h2>
+    <div class="s-tag fu">Галерея</div>
+    <h2 class="s-title fu d1">Наши <em>работы</em></h2>
 
-    <!-- Ð¤Ð¸Ð»ÑÑÑ -->
+    <!-- Фильтр -->
     <div class="gallery-filters fu d1">
-      <button class="gf-btn active" data-filter="all">ÐÑÐµ</button>
-      <button class="gf-btn" data-filter="container">ÐÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑÑ</button>
-      <button class="gf-btn" data-filter="garage">ÐÐ°ÑÐ°Ð¶Ð¸</button>
-      <button class="gf-btn" data-filter="house">ÐÐ¾Ð¼Ð°</button>
+      <button class="gf-btn active" data-filter="all">Все</button>
+      <button class="gf-btn" data-filter="container">Контейнеры</button>
+      <button class="gf-btn" data-filter="garage">Гаражи</button>
+      <button class="gf-btn" data-filter="house">Дома</button>
     </div>
 
     <div class="gallery-strip">
       <div class="g-item fu" data-cat="container">
-        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/bivalni_kontejner-548x411.jpg" alt="ÐÐ¸Ð»Ð¾Ð¹ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑ">
-        <div class="g-label">ÐÐ¸Ð»Ð¾Ð¹ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑ</div>
+        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/bivalni_kontejner-548x411.jpg" alt="Жилой контейнер">
+        <div class="g-label">Жилой контейнер</div>
       </div>
       <div class="g-item fu d1" data-cat="container">
-        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/dvojni_kontejner-548x411.jpg" alt="ÐÐ²Ð¾Ð¹Ð½Ð¾Ð¹ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑ">
-        <div class="g-label">ÐÐ²Ð¾Ð¹Ð½Ð¾Ð¹ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑ</div>
+        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/dvojni_kontejner-548x411.jpg" alt="Двойной контейнер">
+        <div class="g-label">Двойной контейнер</div>
       </div>
       <div class="g-item fu d2" data-cat="container">
-        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/kontejnerji_pisarne_z_vec_stekla_cover-548x411.jpg" alt="ÐÑÐ¸Ñ-ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑ ÑÐ¾ ÑÑÐµÐºÐ»Ð¾Ð¼">
-        <div class="g-label">ÐÑÐ¸Ñ ÑÐ¾ ÑÑÐµÐºÐ»Ð¾Ð¼</div>
+        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/kontejnerji_pisarne_z_vec_stekla_cover-548x411.jpg" alt="Офис-контейнер со стеклом">
+        <div class="g-label">Офис со стеклом</div>
       </div>
       <div class="g-item fu d3" data-cat="garage">
-        <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/garaza-s-fasado-in-hisko-cover-1024x768.jpg" alt="ÐÐ°ÑÐ°Ð¶ Ñ ÑÐ°ÑÐ°Ð´Ð¾Ð¼">
-        <div class="g-label">ÐÐ°ÑÐ°Ð¶ Ñ ÑÐ°ÑÐ°Ð´Ð¾Ð¼</div>
+        <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/garaza-s-fasado-in-hisko-cover-1024x768.jpg" alt="Гараж с фасадом">
+        <div class="g-label">Гараж с фасадом</div>
       </div>
       <div class="g-item fu d4" data-cat="garage">
-        <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/20250120_133653380_iOS-e1756367293283-548x411.jpg" alt="ÐÐ°Ð´ÑÑÑÐµÑÐµÐº">
-        <div class="g-label">ÐÐ°Ð´ÑÑÑÐµÑÐµÐº</div>
+        <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/20250120_133653380_iOS-e1756367293283-548x411.jpg" alt="Надстрешек">
+        <div class="g-label">Надстрешек</div>
       </div>
       <div class="g-item fu d1" data-cat="garage">
-        <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/vrstne_garaze-548x411.jpg" alt="Ð ÑÐ´Ð½ÑÐµ Ð³Ð°ÑÐ°Ð¶Ð¸">
-        <div class="g-label">Ð ÑÐ´Ð½ÑÐµ Ð³Ð°ÑÐ°Ð¶Ð¸</div>
+        <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/vrstne_garaze-548x411.jpg" alt="Рядные гаражи">
+        <div class="g-label">Рядные гаражи</div>
       </div>
       <div class="g-item fu d2" data-cat="container">
-        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/notranjost_osnovnih_kontejnerjev_cover-548x411.jpg" alt="ÐÐ½ÑÐµÑÑÐµÑ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑÐ°">
-        <div class="g-label">ÐÐ½ÑÐµÑÑÐµÑ</div>
+        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/notranjost_osnovnih_kontejnerjev_cover-548x411.jpg" alt="Интерьер контейнера">
+        <div class="g-label">Интерьер</div>
       </div>
       <div class="g-item fu d3" data-cat="house">
-        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/dvojni-bivalni-kontejnerji-s-teraso_cover_0322-548x411.jpg" alt="ÐÐ¾Ð¼ Ñ ÑÐµÑÑÐ°ÑÐ¾Ð¹">
-        <div class="g-label">ÐÐ¾Ð¼ Ñ ÑÐµÑÑÐ°ÑÐ¾Ð¹</div>
+        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/dvojni-bivalni-kontejnerji-s-teraso_cover_0322-548x411.jpg" alt="Дом с террасой">
+        <div class="g-label">Дом с террасой</div>
       </div>
       <div class="g-item fu d4" data-cat="container">
-        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/kontejnerji_v_drugih_barvah_cover-548x411.jpg" alt="ÐÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑÑ Ð² ÑÐ°Ð·Ð½ÑÑ ÑÐ²ÐµÑÐ°Ñ">
-        <div class="g-label">Ð Ð°Ð·Ð½ÑÐµ ÑÐ²ÐµÑÐ°</div>
+        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/kontejnerji_v_drugih_barvah_cover-548x411.jpg" alt="Контейнеры в разных цветах">
+        <div class="g-label">Разные цвета</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- âââ CONTACT âââ -->
+<!-- ─── CONTACT ─── -->
 <section class="contact" id="contact">
   <div class="container">
-    <div class="s-tag fu">Ð¡Ð²ÑÐ¶Ð¸ÑÐµÑÑ Ñ Ð½Ð°Ð¼Ð¸</div>
-    <h2 class="s-title fu d1">ÐÐ°ÑÐ½Ð¸ÑÐµ ÑÐ²Ð¾Ð¹<br><em>Ð¿ÑÐ¾ÐµÐºÑ ÑÐµÐ³Ð¾Ð´Ð½Ñ</em></h2>
+    <div class="s-tag fu">Свяжитесь с нами</div>
+    <h2 class="s-title fu d1">Начните свой<br><em>проект сегодня</em></h2>
 
     <div class="contact-wrap">
       <div>
@@ -1686,7 +1686,7 @@
             <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1C5 1 3 3 3 5.5c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5C12 3 10 1 7.5 1z" stroke="var(--accent)" stroke-width="1.3"></path><circle cx="7.5" cy="5.5" r="1.5" stroke="var(--accent)" stroke-width="1.3"></circle></svg>
           </div>
           <div>
-            <div class="c-label">ÐÐ´ÑÐµÑ</div>
+            <div class="c-label">Адрес</div>
             <div class="c-val">Kolodvorska ulica 37e,<br>2310 Slovenska Bistrica, Slovenija</div>
           </div>
         </div>
@@ -1704,7 +1704,7 @@
             <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 2h2.5l1.5 3.5-1.5 1c.8 1.8 2.2 3.2 4 4l1-1.5 3.5 1.5V13C8 13 2 7 2 2h1z" stroke="var(--accent)" stroke-width="1.3"></path></svg>
           </div>
           <div>
-            <div class="c-label">Ð¢ÐµÐ»ÐµÑÐ¾Ð½</div>
+            <div class="c-label">Телефон</div>
             <div class="c-val"><a href="tel:+38628055120">+386 2 80 55 120</a></div>
           </div>
         </div>
@@ -1713,11 +1713,11 @@
       <form class="c-form fu d1" onsubmit="submitForm(event)">
         <div class="fr">
           <div class="fg">
-            <label>ÐÐ¼Ñ</label>
-            <input type="text" placeholder="ÐÐ°ÑÐµ Ð¸Ð¼Ñ" required="">
+            <label>Имя</label>
+            <input type="text" placeholder="Ваше имя" required="">
           </div>
           <div class="fg">
-            <label>Ð¢ÐµÐ»ÐµÑÐ¾Ð½</label>
+            <label>Телефон</label>
             <input type="tel" placeholder="+7 000 000 00 00">
           </div>
         </div>
@@ -1726,76 +1726,76 @@
           <input type="email" placeholder="your@email.com" required="">
         </div>
         <div class="fg">
-          <label>ÐÐ½ÑÐµÑÐµÑÑÐµÑ</label>
+          <label>Интересует</label>
           <select>
-            <option value="" disabled="" selected="">ÐÑÐ±ÐµÑÐ¸ÑÐµ Ð¿ÑÐ¾Ð´ÑÐºÑ...</option>
-            <option>ÐÐ¸Ð»Ð¾Ð¹ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑ</option>
-            <option>ÐÐ²Ð¾Ð¹Ð½Ð¾Ð¹ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑ</option>
-            <option>ÐÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑ Ñ ÑÐ°ÑÐ°Ð´Ð¾Ð¼ Piano</option>
-            <option>Ð¡Ð°Ð½Ð¸ÑÐ°ÑÐ½ÑÐ¹ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑ</option>
-            <option>ÐÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑ-Ð¾ÑÐ¸Ñ / ÑÐ¾ÑÐ³Ð¾Ð²Ð»Ñ</option>
-            <option>ÐÐ¾Ð´ÑÐ»ÑÐ½ÑÐ¹ Ð´Ð¾Ð¼ Living H50+50</option>
-            <option>ÐÑÑÐ³Ð¾Ðµ / ÐÐ½Ð´Ð¸Ð²Ð¸Ð´ÑÐ°Ð»ÑÐ½ÑÐ¹ Ð¿ÑÐ¾ÐµÐºÑ</option>
+            <option value="" disabled="" selected="">Выберите продукт...</option>
+            <option>Жилой контейнер</option>
+            <option>Двойной контейнер</option>
+            <option>Контейнер с фасадом Piano</option>
+            <option>Санитарный контейнер</option>
+            <option>Контейнер-офис / торговля</option>
+            <option>Модульный дом Living H50+50</option>
+            <option>Другое / Индивидуальный проект</option>
           </select>
         </div>
         <div class="fg">
-          <label>Ð¡Ð¾Ð¾Ð±ÑÐµÐ½Ð¸Ðµ</label>
-          <textarea rows="4" placeholder="ÐÐ¿Ð¸ÑÐ¸ÑÐµ Ð¿ÑÐ¾ÐµÐºÑ, ÑÐ°Ð·Ð¼ÐµÑÑ, ÑÑÐ¾ÐºÐ¸..."></textarea>
+          <label>Сообщение</label>
+          <textarea rows="4" placeholder="Опишите проект, размеры, сроки..."></textarea>
         </div>
         <button type="submit" class="btn-gold" style="width:100%;justify-content:center;padding:15px;font-size:13px;">
-          ÐÑÐ¿ÑÐ°Ð²Ð¸ÑÑ Ð·Ð°ÑÐ²ÐºÑ
+          Отправить заявку
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1 6.5h11M7 2l4.5 4.5L7 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         </button>
         <div id="ok" style="display:none;padding:14px;background:rgba(200,169,110,0.1);border:1px solid rgba(200,169,110,0.3);color:var(--accent);font-size:13px;text-align:center;letter-spacing:0.04em;">
-          ÐÐ°ÑÐ²ÐºÐ° Ð¾ÑÐ¿ÑÐ°Ð²Ð»ÐµÐ½Ð° â ÑÐ²ÑÐ¶ÐµÐ¼ÑÑ Ð² ÑÐµÑÐµÐ½Ð¸Ðµ 24 ÑÐ°ÑÐ¾Ð².
+          Заявка отправлена — свяжемся в течение 24 часов.
         </div>
       </form>
     </div>
   </div>
 </section>
 
-<!-- âââ FOOTER âââ -->
+<!-- ─── FOOTER ─── -->
 <footer>
   <div class="container">
     <div class="footer-g">
       <div>
         <div class="f-logo-main">Hosekra</div>
         <div class="f-logo-sub">Kontejnerji</div>
-        <p class="f-desc">ÐÑÐµÐ¼Ð¸Ð°Ð»ÑÐ½ÑÐµ Ð¼Ð¾Ð´ÑÐ»ÑÐ½ÑÐµ Ð´Ð¾Ð¼Ð° Ð¸ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑÑ. ÐÑÐ¾Ð¸Ð·Ð²Ð¾Ð´ÑÑÐ²Ð¾ Ð² Ð¡Ð»Ð¾Ð²ÐµÐ½Ð¸Ð¸. ÐÐ¾ÑÑÐ°Ð²ÐºÐ° Ð¿Ð¾ Ð²ÑÐµÐ¹ ÐÐ²ÑÐ¾Ð¿Ðµ.</p>
+        <p class="f-desc">Премиальные модульные дома и контейнеры. Производство в Словении. Доставка по всей Европе.</p>
       </div>
       <div>
-        <div class="f-col-t">ÐÑÐ¾Ð´ÑÐºÑÑ</div>
+        <div class="f-col-t">Продукты</div>
         <ul class="f-links">
-          <li><a href="#">ÐÐ¸Ð»ÑÐµ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑÑ</a></li>
-          <li><a href="#">ÐÐ²Ð¾Ð¹Ð½ÑÐµ ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑÑ</a></li>
-          <li><a href="#">Ð¡Ð°Ð½Ð¸ÑÐ°ÑÐ½ÑÐµ</a></li>
-          <li><a href="#">ÐÑÐ¸Ñ / Ð¢Ð¾ÑÐ³Ð¾Ð²Ð»Ñ</a></li>
-          <li><a href="#">ÐÐ¾Ð´ÑÐ»ÑÐ½ÑÐµ Ð´Ð¾Ð¼Ð°</a></li>
+          <li><a href="#">Жилые контейнеры</a></li>
+          <li><a href="#">Двойные контейнеры</a></li>
+          <li><a href="#">Санитарные</a></li>
+          <li><a href="#">Офис / Торговля</a></li>
+          <li><a href="#">Модульные дома</a></li>
         </ul>
       </div>
       <div>
-        <div class="f-col-t">ÐÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ñ</div>
+        <div class="f-col-t">Компания</div>
         <ul class="f-links">
-          <li><a href="#">Ð Ð½Ð°Ñ</a></li>
-          <li><a href="#">ÐÐ°Ð»ÐµÑÐµÑ</a></li>
-          <li><a href="#">ÐÐ»Ð¾Ð³</a></li>
-          <li><a href="#">ÐÐ°ÑÑÐµÑÐ°</a></li>
-          <li><a href="#">ÐÐ¾Ð½ÑÐ°ÐºÑ</a></li>
+          <li><a href="#">О нас</a></li>
+          <li><a href="#">Галерея</a></li>
+          <li><a href="#">Блог</a></li>
+          <li><a href="#">Карьера</a></li>
+          <li><a href="#">Контакт</a></li>
         </ul>
       </div>
       <div>
-        <div class="f-col-t">Ð¡ÐµÑÐ²Ð¸Ñ</div>
+        <div class="f-col-t">Сервис</div>
         <ul class="f-links">
-          <li><a href="#">ÐÐ¾Ð½ÑÐ¸Ð³ÑÑÐ°ÑÐ¾Ñ</a></li>
-          <li><a href="#">ÐÑÐ°Ð¹Ñ-Ð»Ð¸ÑÑ</a></li>
-          <li><a href="#">ÐÐ¾ÑÑÐ°Ð²ÐºÐ°</a></li>
-          <li><a href="#">ÐÐ°ÑÐ°Ð½ÑÐ¸Ñ</a></li>
+          <li><a href="#">Конфигуратор</a></li>
+          <li><a href="#">Прайс-лист</a></li>
+          <li><a href="#">Доставка</a></li>
+          <li><a href="#">Гарантия</a></li>
           <li><a href="#">FAQ</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-b">
-      <div class="f-copy">Â© 2026 Hosekra, d.o.o. ÐÑÐµ Ð¿ÑÐ°Ð²Ð° Ð·Ð°ÑÐ¸ÑÐµÐ½Ñ.</div>
+      <div class="f-copy">© 2026 Hosekra, d.o.o. Все права защищены.</div>
       <div class="f-socials">
         <a href="#" class="f-social" aria-label="Facebook">
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M8.5 2H7a2 2 0 00-2 2v1.5H3.5V8H5v5h3V8h2l.5-2.5H8V4a.5.5 0 01.5-.5H9V2z" stroke="var(--muted)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -1812,10 +1812,10 @@
 </footer>
 
 <script>
-  // âââ SCROLL-DRIVEN VIDEO (ÑÐµÐºÑÐ¸Ñ Ð¿Ð¾ÑÐ»Ðµ Process) âââ
-  // hero.mp4 â Ð°Ð²ÑÐ¾Ð²Ð¾ÑÐ¿ÑÐ¾Ð¸Ð·Ð²ÐµÐ´ÐµÐ½Ð¸Ðµ Ð¾Ð´Ð¸Ð½ ÑÐ°Ð· Ð² Hero (autoplay, Ð±ÐµÐ· loop)
-  // hero2.mp4 â scroll-driven: ÑÐºÑÐ¾Ð»Ð»Ð¸ÑÑ â Ð²Ð¸Ð´ÐµÐ¾ Ð¿ÐµÑÐµÐ¼Ð°ÑÑÐ²Ð°ÐµÑÑÑ
-  // ÐÐµÐ»Ð¸Ð½ÐµÐ¹Ð½Ð¾ÑÑÑ: Ð¿ÐµÑÐ²ÑÐµ 5 ÑÐµÐº Ð²Ð¸Ð´ÐµÐ¾ Ð¿ÑÐ¾Ð»ÐµÑÐ°ÑÑ Ð±ÑÑÑÑÐµÐµ (easeIn mapping)
+  // ─── SCROLL-DRIVEN VIDEO (секция после Process) ───
+  // hero.mp4 — автовоспроизведение один раз в Hero (autoplay, без loop)
+  // hero2.mp4 — scroll-driven: скроллишь → видео перематывается
+  // Нелинейность: первые 5 сек видео пролетают быстрее (easeIn mapping)
 
   const sdvVideo = document.getElementById('sdvVideo');
   const sdvTrack = document.getElementById('sdvTrack');
@@ -1823,24 +1823,24 @@
   let sdvDuration = 0;
   let sdvTicking = false;
 
-  // ÐÐµÐ»Ð¸Ð½ÐµÐ¹Ð½Ð°Ñ ÑÑÐ½ÐºÑÐ¸Ñ: ÑÑÐºÐ¾ÑÑÐµÐ¼ Ð¿ÐµÑÐ²ÑÐµ 5 ÑÐµÐº Ð²Ð¸Ð´ÐµÐ¾
-  // progress [0..1] â videoTime [0..duration]
+  // Нелинейная функция: ускоряем первые 5 сек видео
+  // progress [0..1] → videoTime [0..duration]
   function nonLinearTime(progress, duration) {
-    // ÐÐµÑÐ²ÑÐµ 5 ÑÐµÐºÑÐ½Ð´ Ð·Ð°Ð½Ð¸Ð¼Ð°ÑÑ ÑÐ¾Ð»ÑÐºÐ¾ Ð¿ÐµÑÐ²ÑÐµ 20% ÑÐºÑÐ¾Ð»Ð»Ð° (Ð±ÑÑÑÑÐµÐµ)
-    // ÐÑÑÐ°Ð²ÑÐµÐµÑÑ Ð²ÑÐµÐ¼Ñ Ð·Ð°Ð½Ð¸Ð¼Ð°ÐµÑ 80% ÑÐºÑÐ¾Ð»Ð»Ð°
-    const fastEnd = 5; // ÑÐµÐºÑÐ½Ð´
-    const fastScrollFraction = 0.20; // Ð¿ÐµÑÐ²ÑÐµ 20% ÑÐºÑÐ¾Ð»Ð»Ð°
+    // Первые 5 секунд занимают только первые 20% скролла (быстрее)
+    // Оставшееся время занимает 80% скролла
+    const fastEnd = 5; // секунд
+    const fastScrollFraction = 0.20; // первые 20% скролла
 
     if (duration <= fastEnd) {
-      // ÐÐ¸Ð´ÐµÐ¾ ÐºÐ¾ÑÐ¾ÑÐµ 5 ÑÐµÐº â Ð»Ð¸Ð½ÐµÐ¹Ð½Ð¾
+      // Видео короче 5 сек — линейно
       return progress * duration;
     }
 
     if (progress <= fastScrollFraction) {
-      // ÐÑÑÑÑÐ°Ñ Ð·Ð¾Ð½Ð°: Ð¿ÐµÑÐ²ÑÐµ 20% ÑÐºÑÐ¾Ð»Ð»Ð° â 0..5 ÑÐµÐº Ð²Ð¸Ð´ÐµÐ¾
+      // Быстрая зона: первые 20% скролла → 0..5 сек видео
       return (progress / fastScrollFraction) * fastEnd;
     } else {
-      // ÐÐµÐ´Ð»ÐµÐ½Ð½Ð°Ñ Ð·Ð¾Ð½Ð°: 20%..100% ÑÐºÑÐ¾Ð»Ð»Ð° â 5..end ÑÐµÐº
+      // Медленная зона: 20%..100% скролла → 5..end сек
       const slowProgress = (progress - fastScrollFraction) / (1 - fastScrollFraction);
       return fastEnd + slowProgress * (duration - fastEnd);
     }
@@ -1863,7 +1863,7 @@
 
   sdvVideo.addEventListener('loadedmetadata', () => {
     sdvDuration = sdvVideo.duration;
-    // ÐÐ¾ÐºÐ°Ð·ÑÐ²Ð°ÐµÐ¼ Ð¿ÐµÑÐ²ÑÐ¹ ÐºÐ°Ð´Ñ
+    // Показываем первый кадр
     sdvVideo.play().then(() => sdvVideo.pause()).catch(() => {});
     updateSdvVideo();
   });
@@ -1881,19 +1881,19 @@
 
   window.addEventListener('load', updateSdvVideo);
 
-  // âââ SCROLL ANIMATIONS âââ
+  // ─── SCROLL ANIMATIONS ───
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.fu').forEach(el => io.observe(el));
 
-  // âââ HEADER SCROLL âââ
+  // ─── HEADER SCROLL ───
   const hdr = document.getElementById('hdr');
   window.addEventListener('scroll', () => {
     hdr.classList.toggle('scrolled', window.scrollY > 50);
   }, { passive: true });
 
-  // âââ STEPS HOVER âââ
+  // ─── STEPS HOVER ───
   document.querySelectorAll('.step').forEach(s => {
     s.addEventListener('mouseenter', () => {
       document.querySelectorAll('.step').forEach(x => x.classList.remove('on'));
@@ -1901,7 +1901,7 @@
     });
   });
 
-  // âââ PROFILI SLIDER âââ
+  // ─── PROFILI SLIDER ───
   const slider = document.getElementById('profiliSlider');
   const items = slider ? slider.querySelectorAll('.ps-item') : [];
   let sliderIndex = 0;
@@ -1925,7 +1925,7 @@
   });
   window.addEventListener('resize', updateSlider);
 
-  // âââ GALLERY FILTER âââ
+  // ─── GALLERY FILTER ───
   document.querySelectorAll('.gf-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.gf-btn').forEach(b => b.classList.remove('active'));
@@ -1941,12 +1941,12 @@
     });
   });
 
-  // âââ MOBILE MENU âââ
+  // ─── MOBILE MENU ───
   const ham = document.querySelector('.ham');
   const nav = document.querySelector('nav');
   let mobileOpen = false;
 
-  // Ð¡Ð¾Ð·Ð´Ð°ÑÐ¼ Ð¼Ð¾Ð±Ð¸Ð»ÑÐ½Ð¾Ðµ Ð¼ÐµÐ½Ñ
+  // Создаём мобильное меню
   const mobileMenu = document.createElement('div');
   mobileMenu.id = 'mobileMenu';
   mobileMenu.style.cssText = `
@@ -1955,7 +1955,7 @@
     padding:32px 24px; border-bottom:1px solid rgba(255,255,255,0.07);
     flex-direction:column; gap:0;
   `;
-  const navLinks = ['#products:ÐÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑÑ','#garages:ÐÐ°ÑÐ°Ð¶Ð¸','#features:ÐÑÐµÐ¸Ð¼ÑÑÐµÑÑÐ²Ð°','#reviews:ÐÑÐ·ÑÐ²Ñ','#gallery:ÐÐ°Ð»ÐµÑÐµÑ','#contact:ÐÐ¾Ð½ÑÐ°ÐºÑ'];
+  const navLinks = ['#products:Контейнеры','#garages:Гаражи','#features:Преимущества','#reviews:Отзывы','#gallery:Галерея','#contact:Контакт'];
   navLinks.forEach(item => {
     const [href, label] = item.split(':');
     const a = document.createElement('a');
@@ -1965,7 +1965,7 @@
     mobileMenu.appendChild(a);
   });
   const mobileBtn = document.createElement('a');
-  mobileBtn.href = '#contact'; mobileBtn.textContent = 'ÐÐ¾Ð»ÑÑÐ¸ÑÑ Ð¿ÑÐµÐ´Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ';
+  mobileBtn.href = '#contact'; mobileBtn.textContent = 'Получить предложение';
   mobileBtn.style.cssText = 'display:inline-block; margin-top:24px; background:#c8a96e; color:#1a1400; font-weight:700; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; padding:14px 28px; text-decoration:none;';
   mobileBtn.addEventListener('click', () => { mobileOpen = false; mobileMenu.style.display = 'none'; });
   mobileMenu.appendChild(mobileBtn);
@@ -1976,7 +1976,7 @@
     mobileMenu.style.display = mobileOpen ? 'flex' : 'none';
   });
 
-  // âââ SMOOTH SCROLL Ð´Ð»Ñ ÑÐºÐ¾ÑÐµÐ¹ âââ
+  // ─── SMOOTH SCROLL для якорей ───
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const target = document.querySelector(a.getAttribute('href'));
@@ -1987,14 +1987,14 @@
     });
   });
 
-  // âââ FORM âââ
+  // ─── FORM ───
   function submitForm(e) {
     e.preventDefault();
     document.getElementById('ok').style.display = 'block';
     e.target.querySelectorAll('input,textarea,select').forEach(el => el.value = '');
     setTimeout(() => document.getElementById('ok').style.display = 'none', 5000);
   }
-</script><div id="mobileMenu" style="display: none; position: fixed; top: 76px; left: 0px; right: 0px; z-index: 199; background: rgba(14, 15, 15, 0.98); backdrop-filter: blur(24px); padding: 32px 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.07); flex-direction: column; gap: 0px;"><a href="#products" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">ÐÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑÑ</a><a href="#garages" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">ÐÐ°ÑÐ°Ð¶Ð¸</a><a href="#features" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">ÐÑÐµÐ¸Ð¼ÑÑÐµÑÑÐ²Ð°</a><a href="#reviews" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">ÐÑÐ·ÑÐ²Ñ</a><a href="#gallery" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">ÐÐ°Ð»ÐµÑÐµÑ</a><a href="#contact" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">ÐÐ¾Ð½ÑÐ°ÐºÑ</a><a href="#contact" style="display: inline-block; margin-top: 24px; background: rgb(200, 169, 110); color: rgb(26, 20, 0); font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 28px; text-decoration: none;">ÐÐ¾Ð»ÑÑÐ¸ÑÑ Ð¿ÑÐµÐ´Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ</a></div>
+</script><div id="mobileMenu" style="display: none; position: fixed; top: 76px; left: 0px; right: 0px; z-index: 199; background: rgba(14, 15, 15, 0.98); backdrop-filter: blur(24px); padding: 32px 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.07); flex-direction: column; gap: 0px;"><a href="#products" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Контейнеры</a><a href="#garages" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Гаражи</a><a href="#features" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Преимущества</a><a href="#reviews" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Отзывы</a><a href="#gallery" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Галерея</a><a href="#contact" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Контакт</a><a href="#contact" style="display: inline-block; margin-top: 24px; background: rgb(200, 169, 110); color: rgb(26, 20, 0); font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 28px; text-decoration: none;">Получить предложение</a></div><div id="mobileMenu" style="display: none; position: fixed; top: 76px; left: 0px; right: 0px; z-index: 199; background: rgba(14, 15, 15, 0.98); backdrop-filter: blur(24px); padding: 32px 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.07); flex-direction: column; gap: 0px;"><a href="#products" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Контейнеры</a><a href="#garages" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Гаражи</a><a href="#features" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Преимущества</a><a href="#reviews" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Отзывы</a><a href="#gallery" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Галерея</a><a href="#contact" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Контакт</a><a href="#contact" style="display: inline-block; margin-top: 24px; background: rgb(200, 169, 110); color: rgb(26, 20, 0); font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 28px; text-decoration: none;">Получить предложение</a></div>
 
 
 
