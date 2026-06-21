@@ -1,0 +1,2001 @@
+<html lang="ru"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hosekra — Модульные дома и контейнеры</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0e0f0f;
+      --surface: #141515;
+      --card:    #1a1b1b;
+      --mid:     #9a9a9a;
+      --muted:   #555;
+      --border:  rgba(255,255,255,0.07);
+      --accent:  #c8a96e;   /* тёплое золото — сочетается с белым/чёрным домом */
+      --accent2: #a88b52;
+      --light:   #e4e2de;
+      --white:   #ffffff;
+      --font:    'Outfit', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: auto; } /* auto — нужно для scroll-driven video */
+    body {
+      background: var(--bg);
+      color: var(--light);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 0 56px;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      background: rgba(14,15,15,0.65);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.4s;
+    }
+    header.scrolled { background: rgba(14,15,15,0.96); }
+
+    /* Logo SVG */
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .logo-main {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+    .logo-sub {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      color: var(--mid);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+    nav a {
+      color: var(--mid);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--white); }
+
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #1a1400;
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 11px 24px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-gold:hover { background: var(--accent2); transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 11px 24px;
+      border: 1px solid rgba(255,255,255,0.22);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ─── HERO (обычный, без scroll-drive) ─── */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100dvh;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero-video-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+    }
+
+    /* ─── SCROLL-DRIVEN VIDEO SECTION ─── */
+    .sdv-track {
+      position: relative;
+      height: 400vh; /* пространство для скролла */
+    }
+    .sdv-sticky {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100dvh;
+      overflow: hidden;
+    }
+    .sdv-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+    }
+    .sdv-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(to right, rgba(14,15,15,0.75) 0%, rgba(14,15,15,0.3) 60%, transparent 100%),
+        linear-gradient(to top, rgba(14,15,15,0.6) 0%, transparent 50%);
+    }
+    /* Watermark cover для scroll-driven секции */
+    .sdv-sticky::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 280px;
+      height: 120px;
+      z-index: 3;
+      background:
+        radial-gradient(ellipse at 100% 100%, rgba(14,15,15,1) 0%, rgba(14,15,15,0.9) 35%, transparent 70%);
+      pointer-events: none;
+    }
+    .sdv-caption {
+      position: absolute;
+      z-index: 2;
+      bottom: 88px;
+      left: 56px;
+    }
+    @media (max-width: 768px) {
+      .sdv-caption { left: 24px; bottom: 60px; }
+    }
+
+    /* Dark gradient overlay — тёмнее слева для текста */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(to right, rgba(14,15,15,0.88) 0%, rgba(14,15,15,0.55) 50%, rgba(14,15,15,0.15) 100%),
+        linear-gradient(to top, rgba(14,15,15,0.7) 0%, transparent 50%);
+    }
+    /* Watermark cover — правый нижний угол */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 280px;
+      height: 120px;
+      z-index: 2;
+      background:
+        radial-gradient(ellipse at 100% 100%, rgba(14,15,15,1) 0%, rgba(14,15,15,0.9) 35%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 56px 88px;
+      max-width: 760px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-size: clamp(46px, 6vw, 88px);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.025em;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(228,226,222,0.75);
+      max-width: 500px;
+      line-height: 1.65;
+      margin-bottom: 44px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stats {
+      position: absolute;
+      z-index: 2;
+      bottom: 88px;
+      right: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      align-items: flex-end;
+    }
+    .stat-item { text-align: right; }
+    .stat-num {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--accent); }
+    .stat-label {
+      font-size: 11px;
+      color: var(--mid);
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    /* scroll hint */
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.4;
+      animation: bounce 2s ease infinite;
+      transition: opacity 0.4s ease;
+    }
+    .scroll-hint span {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section { padding: 120px 0; }
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 56px;
+    }
+
+    .s-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .s-tag::before {
+      content: '';
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .s-title {
+      font-size: clamp(30px, 3.5vw, 52px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+    .s-title em { font-style: italic; color: var(--accent); }
+
+    .s-sub {
+      font-size: 16px;
+      color: var(--mid);
+      line-height: 1.7;
+      max-width: 500px;
+      margin-top: 14px;
+    }
+
+    /* ─── PRODUCTS BENTO ─── */
+    .products { background: var(--surface); }
+
+    .products-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 1fr;
+      gap: 14px;
+    }
+
+    .bc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      cursor: pointer;
+      transition: border-color 0.3s, transform 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .bc:hover { border-color: rgba(200,169,110,0.4); transform: translateY(-2px); }
+
+    .bc:nth-child(1) { grid-column: span 5; min-height: 340px; }
+    .bc:nth-child(2) { grid-column: span 4; min-height: 340px; }
+    .bc:nth-child(3) { grid-column: span 3; min-height: 340px; }
+    .bc:nth-child(4) { grid-column: span 7; min-height: 260px; }
+    .bc:nth-child(5) { grid-column: span 5; min-height: 260px; }
+
+    .bc-img {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+      background: #111;
+    }
+    .bc-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .bc:hover .bc-img img { transform: scale(1.04); }
+
+    /* overlay на картинке */
+    .bc-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,27,27,0.7) 0%, transparent 50%);
+    }
+
+    .bc-body {
+      padding: 18px 22px 20px;
+      flex-shrink: 0;
+    }
+    .bc-type {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+    .bc-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .bc-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .bc-arrow {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 30px;
+      height: 30px;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .bc:hover .bc-arrow { border-color: var(--accent); background: var(--accent); }
+    .bc:hover .bc-arrow svg path { stroke: #1a1400; }
+
+    /* ─── PROCESS ─── */
+    .process { background: var(--bg); }
+
+    .process-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      margin-top: 72px;
+    }
+
+    .steps { display: flex; flex-direction: column; }
+
+    .step {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 20px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+      opacity: 0.4;
+      transition: opacity 0.3s;
+      cursor: default;
+    }
+    .step:first-child { border-top: 1px solid var(--border); }
+    .step.on, .step:hover { opacity: 1; }
+
+    .step-n {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      padding-top: 4px;
+    }
+    .step-h {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 7px;
+    }
+    .step-p {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.65;
+    }
+
+    .process-img {
+      position: sticky;
+      top: 100px;
+      height: 500px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .process-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ─── ABOUT GOLD ─── */
+    .about {
+      background: var(--accent);
+      padding: 96px 0;
+    }
+    .about .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-h {
+      font-size: clamp(28px, 3vw, 46px);
+      font-weight: 700;
+      line-height: 1.12;
+      color: #1a1400;
+      letter-spacing: -0.02em;
+    }
+    .about-p {
+      font-size: 16px;
+      color: rgba(26,20,0,0.65);
+      line-height: 1.7;
+      margin-top: 18px;
+    }
+    .about-nums {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .a-num {
+      font-size: 44px;
+      font-weight: 700;
+      color: #1a1400;
+      line-height: 1;
+    }
+    .a-label {
+      font-size: 13px;
+      color: rgba(26,20,0,0.55);
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+
+    /* ─── GALLERY STRIP ─── */
+    .gallery { background: var(--surface); padding: 80px 0; }
+
+    .gallery-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 36px;
+      margin-bottom: 32px;
+    }
+    .gf-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--mid);
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 9px 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .gf-btn:hover, .gf-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .g-item {
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4/3;
+    }
+    .g-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .g-item:hover img { transform: scale(1.06); }
+    .g-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 10px 14px;
+      background: linear-gradient(to top, rgba(14,15,15,0.85), transparent);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .g-item:hover .g-label { opacity: 1; }
+    .g-item.hidden { display: none; }
+
+    /* ─── CONTACT ─── */
+    .contact { background: var(--bg); }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-top: 72px;
+    }
+
+    .c-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .c-detail:first-child { border-top: 1px solid var(--border); }
+
+    .c-icon {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .c-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .c-val {
+      font-size: 15px;
+      color: var(--white);
+    }
+    .c-val a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+    .c-val a:hover { color: var(--accent); }
+
+    /* Form */
+    .c-form { display: flex; flex-direction: column; gap: 14px; }
+
+    .fg { display: flex; flex-direction: column; gap: 7px; }
+    .fg label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .fg input, .fg textarea, .fg select {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 15px;
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+      appearance: none;
+    }
+    .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--accent); }
+    .fg input::placeholder, .fg textarea::placeholder { color: var(--muted); }
+    .fg select option { background: var(--card); }
+
+    .fr { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #090909;
+      border-top: 1px solid var(--border);
+      padding: 64px 0 36px;
+    }
+    .footer-g {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .f-logo-main { font-size: 16px; font-weight: 700; letter-spacing: 0.12em; color: var(--white); text-transform: uppercase; }
+    .f-logo-sub { font-size: 9px; letter-spacing: 0.18em; color: var(--mid); text-transform: uppercase; margin-top: 2px; }
+    .f-desc { font-size: 13px; color: var(--muted); line-height: 1.7; max-width: 260px; margin-top: 14px; }
+    .f-col-t { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); margin-bottom: 18px; }
+    .f-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .f-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .f-links a:hover { color: var(--accent); }
+
+    .footer-b {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 28px;
+    }
+    .f-copy { font-size: 12px; color: var(--muted); }
+    .f-socials { display: flex; gap: 10px; }
+    .f-social {
+      width: 34px; height: 34px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+    .f-social:hover { border-color: var(--accent); }
+
+    /* ─── ПРЕИМУЩЕСТВА ─── */
+    .features { background: var(--bg); }
+    .features-head { margin-bottom: 56px; }
+
+    .feat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .feat-card {
+      background: var(--surface);
+      padding: 40px 32px;
+      transition: background 0.3s;
+    }
+    .feat-card:hover { background: var(--card); }
+
+    .feat-icon {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(200,169,110,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .feat-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .feat-text {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ─── ГАРАЖИ ─── */
+    .garages { background: var(--surface); }
+    .garages-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      gap: 40px;
+      margin-bottom: 56px;
+    }
+
+    .garages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .garage-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .garage-card:hover { border-color: rgba(200,169,110,0.4); transform: translateY(-2px); }
+
+    .garage-img {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      background: #111;
+    }
+    .garage-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .garage-card:hover .garage-img img { transform: scale(1.05); }
+
+    .garage-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--accent);
+      color: #1a1400;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      z-index: 1;
+    }
+    .garage-body { padding: 18px 20px 22px; }
+    .garage-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .garage-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ─── ОТЗЫВЫ ─── */
+    .reviews { background: var(--bg); }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 56px;
+    }
+
+    .review-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 32px 28px;
+      transition: border-color 0.3s;
+    }
+    .review-card:hover { border-color: rgba(200,169,110,0.3); }
+
+    .review-stars { margin-bottom: 20px; }
+
+    blockquote.review-text {
+      font-size: 15px;
+      color: rgba(228,226,222,0.8);
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 24px;
+      quotes: none;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .review-avatar {
+      width: 38px;
+      height: 38px;
+      background: var(--accent);
+      color: #1a1400;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .review-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .review-loc {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    @media (max-width: 1024px) {
+      .feat-grid { grid-template-columns: repeat(2, 1fr); }
+      .garages-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr 1fr; }
+      .garages-head { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .feat-grid { grid-template-columns: 1fr; }
+      .garages-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── PROFILI ─── */
+    .profili { background: var(--bg); }
+
+    .profili-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+      margin-bottom: 64px;
+    }
+
+    .profili-props {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .pp {
+      padding: 24px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: border-color 0.3s;
+    }
+    .pp:hover { border-color: rgba(200,169,110,0.35); }
+
+    .pp-icon {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(200,169,110,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+    }
+    .pp-title {
+      font-size: 13px; font-weight: 700;
+      color: var(--white); margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+    .pp-text { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* Слайдер */
+    .profili-slider-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .profili-slider {
+      display: flex;
+      gap: 14px;
+      transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .ps-item {
+      flex: 0 0 calc(33.333% - 10px);
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .ps-item img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.5s ease;
+    }
+    .ps-item:hover img { transform: scale(1.05); }
+    .ps-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 10px 14px;
+      background: linear-gradient(to top, rgba(14,15,15,0.85), transparent);
+      font-size: 12px; font-weight: 600; color: var(--white);
+      letter-spacing: 0.05em;
+    }
+
+    .ps-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px;
+      background: rgba(14,15,15,0.8);
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 5;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .ps-btn:hover { background: var(--accent); border-color: var(--accent); }
+    .ps-btn:hover svg path { stroke: #1a1400; }
+    .ps-prev { left: 12px; }
+    .ps-next { right: 12px; }
+
+    @media (max-width: 1024px) {
+      .profili-head { grid-template-columns: 1fr; gap: 40px; }
+      .ps-item { flex: 0 0 calc(50% - 7px); }
+    }
+    @media (max-width: 768px) {
+      .profili-props { grid-template-columns: 1fr; }
+      .ps-item { flex: 0 0 calc(100%); }
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fu {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fu.vis { opacity: 1; transform: translateY(0); }
+    .fu.d1 { transition-delay: 0.1s; }
+    .fu.d2 { transition-delay: 0.2s; }
+    .fu.d3 { transition-delay: 0.3s; }
+    .fu.d4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ─── */
+    .ham { display: none; }
+
+    @media (max-width: 1024px) {
+      header { padding: 0 24px; }
+      .hero-content { padding: 0 24px 72px; }
+      .hero-stats { right: 24px; bottom: 72px; }
+      .bento { grid-template-rows: auto; }
+      .bc:nth-child(n) { grid-column: span 6; min-height: 280px; }
+      .products-head { grid-template-columns: 1fr; }
+      .process-wrap { grid-template-columns: 1fr; }
+      .process-img { display: none; }
+      .about .container { grid-template-columns: 1fr; }
+      .contact-wrap { grid-template-columns: 1fr; }
+      .gallery-strip { grid-template-columns: 1fr 1fr; }
+      .g-item:first-child { grid-column: span 2; }
+      .footer-g { grid-template-columns: 1fr 1fr; }
+      .container { padding: 0 24px; }
+    }
+
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .btn-gold.header-cta { display: none; }
+      .ham {
+        display: flex; flex-direction: column; gap: 5px;
+        background: none; border: none; cursor: pointer; padding: 8px;
+      }
+      .ham span { display: block; width: 22px; height: 1.5px; background: var(--white); }
+      .hero-stats { display: none; }
+      .bc:nth-child(n) { grid-column: span 12; }
+      .fr { grid-template-columns: 1fr; }
+      .footer-g { grid-template-columns: 1fr; }
+      .gallery-strip { grid-template-columns: 1fr; }
+      .g-item:first-child { grid-column: span 1; aspect-ratio: 4/3; }
+      .about-nums { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header id="hdr">
+  <a href="#" class="logo-wrap">
+    <!-- Hosekra logo icon — hexagon geometric -->
+    <svg class="logo-icon" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Geometric hexagon-style house shape, multi-color like original -->
+      <polygon points="19,2 34,10 34,28 19,36 4,28 4,10" fill="none" stroke="none"></polygon>
+      <!-- Orange top -->
+      <path d="M19 2L34 10V19H19V2Z" fill="#e05a20" opacity="0.9"></path>
+      <!-- Grey right -->
+      <path d="M34 10L34 28L19 19H34V10Z" fill="#8a8a8a" opacity="0.9"></path>
+      <!-- Green bottom-left -->
+      <path d="M4 28L19 36V19H4V28Z" fill="#4a8a3a" opacity="0.9"></path>
+      <!-- Blue bottom -->
+      <path d="M4 10L19 2V19H4V10Z" fill="#2255aa" opacity="0.9"></path>
+      <!-- Center highlight -->
+      <circle cx="19" cy="19" r="3" fill="rgba(255,255,255,0.15)"></circle>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-main">Hosekra</span>
+      <span class="logo-sub">Kontejnerji</span>
+    </div>
+  </a>
+
+  <nav>
+    <a href="#products">Контейнеры</a>
+    <a href="#garages">Гаражи</a>
+    <a href="#profili">Технология</a>
+    <a href="#features">Преимущества</a>
+    <a href="#reviews">Отзывы</a>
+    <a href="#gallery">Галерея</a>
+    <a href="#contact">Контакт</a>
+  </nav>
+
+  <a href="#contact" class="btn-gold header-cta">Получить предложение</a>
+  <button class="ham" aria-label="Меню"><span></span><span></span><span></span></button>
+</header>
+
+<!-- ─── HERO — обычное видео, один раз без loop ─── -->
+<section class="hero" id="hero">
+  <video class="hero-video-bg" id="heroVideo" muted="" playsinline="" preload="auto" autoplay="">
+    <source src="hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow fu">Премиальное модульное строительство · 37 лет опыта</div>
+    <h1 class="hero-title fu d1">
+      Дома нового<br><em>поколения</em><br>из стали
+    </h1>
+    <p class="hero-sub fu d2">
+      Модульные контейнерные дома и жилые объекты под ключ. Производство в Словении, доставка по всей Европе за 30 минут монтажа.
+    </p>
+    <div class="hero-actions fu d3">
+      <a href="#products" class="btn-gold">
+        Смотреть проекты
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1 6.5h11M7 2l4.5 4.5L7 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </a>
+      <a href="#contact" class="btn-ghost">Получить консультацию</a>
+    </div>
+  </div>
+
+  <!-- Stats bottom right -->
+  <div class="hero-stats fu d4">
+    <div class="stat-item">
+      <div class="stat-num">37<span>+</span></div>
+      <div class="stat-label">лет опыта</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1000<span>+</span></div>
+      <div class="stat-label">проектов</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">30<span>'</span></div>
+      <div class="stat-label">монтаж</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ─── PRODUCTS ─── -->
+<section class="products" id="products">
+  <div class="container">
+    <div class="products-head">
+      <div>
+        <div class="s-tag fu">Наши продукты</div>
+        <h2 class="s-title fu d1">Каждый проект —<br><em>уникальное решение</em></h2>
+      </div>
+      <p class="s-sub fu d2">Контейнеры для жилья, работы и хранения. Модульные дома под ключ. Размеры по запросу, доставка и монтаж включены.</p>
+    </div>
+
+    <div class="bento">
+
+      <!-- 1: Фура — доставка -->
+      <a class="bc fu" href="https://www.hosekra.com/kontejnerji/" target="_blank" rel="noopener">
+        <div class="bc-img">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FJ58wcwBbg8rP9sKeJSktoKNhM/hf_20260621_170547_f72489c7-f9d4-45a3-99a9-a8d341be6e34.png" alt="Доставка контейнера">
+        </div>
+        <div class="bc-body">
+          <div class="bc-type">Доставка</div>
+          <div class="bc-name">Готовый — с завода к вам</div>
+          <div class="bc-desc">Привозим полностью собранный контейнер прямо к месту установки.</div>
+        </div>
+        <div class="bc-arrow">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1 5.5h9M6 2l3.5 3.5L6 9" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path></svg>
+        </div>
+      </a>
+
+      <!-- 2: Контейнер снаружи — заменён на реальное фото с hosekra.com -->
+      <a class="bc fu d1" href="https://www.hosekra.com/kontejnerji/" target="_blank" rel="noopener">
+        <div class="bc-img">
+          <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/3/2021/12/hosekra-kontejner-hisa-zunanjost.jpg" alt="Жилой контейнер" onerror="this.src='https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/3/2021/12/hosekra-kontejner-hisa-zunanjost.jpg'">
+        </div>
+        <div class="bc-body">
+          <div class="bc-type">Жилой контейнер</div>
+          <div class="bc-name">Дача / Загородный дом</div>
+          <div class="bc-desc">Антрацит + деревянные рейки Piano. Терраса, панорамные окна.</div>
+        </div>
+        <div class="bc-arrow">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1 5.5h9M6 2l3.5 3.5L6 9" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path></svg>
+        </div>
+      </a>
+
+      <!-- 3: Интерьер -->
+      <a class="bc fu d2" href="https://www.hosekra.com/kontejnerji/" target="_blank" rel="noopener">
+        <div class="bc-img">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FJ58wcwBbg8rP9sKeJSktoKNhM/hf_20260621_170600_b1903bbe-db63-47d6-897f-c6a988056aa3.png" alt="Интерьер контейнера">
+        </div>
+        <div class="bc-body">
+          <div class="bc-type">Интерьер</div>
+          <div class="bc-name">Полная комплектация</div>
+          <div class="bc-desc">Кухня, душ, санузел, диван-зона. Вид на лес.</div>
+        </div>
+        <div class="bc-arrow">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1 5.5h9M6 2l3.5 3.5L6 9" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path></svg>
+        </div>
+      </a>
+
+      <!-- 4: Модульный дом — большая карточка -->
+      <a class="bc fu d3" href="https://www.hosekra.com/lgsf/" target="_blank" rel="noopener">
+        <div class="bc-img">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FJ58wcwBbg8rP9sKeJSktoKNhM/hf_20260621_171430_5c94f780-81e2-4182-a59b-b537556de728.png" alt="Модульный дом Living H50">
+        </div>
+        <div class="bc-body">
+          <div class="bc-type">Модульный дом</div>
+          <div class="bc-name">Living H50+50</div>
+          <div class="bc-desc">Двухэтажный семейный дом на стальном каркасе LGSF. Белый фасад, тёмные окна, быстрый монтаж.</div>
+        </div>
+        <div class="bc-arrow">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1 5.5h9M6 2l3.5 3.5L6 9" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path></svg>
+        </div>
+      </a>
+
+      <!-- 5: Каркас -->
+      <a class="bc fu d4" href="https://www.hosekra.com/lgsf/" target="_blank" rel="noopener">
+        <div class="bc-img">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FJ58wcwBbg8rP9sKeJSktoKNhM/hf_20260621_171632_095d4333-acc2-4071-990d-a12569215c4e.png" alt="Стальной каркас LGSF">
+        </div>
+        <div class="bc-body">
+          <div class="bc-type">Технология</div>
+          <div class="bc-name">Каркас LGSF</div>
+          <div class="bc-desc">Лёгкая оцинкованная сталь — основа каждого дома Hosekra.</div>
+        </div>
+        <div class="bc-arrow">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1 5.5h9M6 2l3.5 3.5L6 9" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path></svg>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESS ─── -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="s-tag fu">Как это работает</div>
+    <h2 class="s-title fu d1">От идеи до<br><em>готового дома</em></h2>
+
+    <div class="process-wrap">
+      <div class="steps">
+        <div class="step on fu">
+          <div class="step-n">01</div>
+          <div>
+            <div class="step-h">Консультация и проект</div>
+            <div class="step-p">Обсуждаем ваши потребности, размеры и бюджет. Подбираем решение или создаём под заказ через конфигуратор.</div>
+          </div>
+        </div>
+        <div class="step fu d1">
+          <div class="step-n">02</div>
+          <div>
+            <div class="step-h">Производство на заводе</div>
+            <div class="step-p">Точное изготовление из оцинкованной стали. Полная сборка с отделкой, окнами и дверями — у нас на заводе в Словении.</div>
+          </div>
+        </div>
+        <div class="step fu d2">
+          <div class="step-n">03</div>
+          <div>
+            <div class="step-h">Доставка на место</div>
+            <div class="step-p">Привозим готовый объект на вашу локацию. Разгрузка краном — 30 минут. Никакой долгой стройки на участке.</div>
+          </div>
+        </div>
+        <div class="step fu d3">
+          <div class="step-n">04</div>
+          <div>
+            <div class="step-h">Готово к жизни</div>
+            <div class="step-p">Подключаете коммуникации — дом готов. Гарантия качества, нулевое техническое обслуживание.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-img fu d2">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FJ58wcwBbg8rP9sKeJSktoKNhM/hf_20260621_170547_f72489c7-f9d4-45a3-99a9-a8d341be6e34.png" alt="Доставка контейнера">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SCROLL-DRIVEN VIDEO SECTION ─── -->
+<div class="sdv-track" id="sdvTrack">
+  <div class="sdv-sticky">
+    <video class="sdv-video" id="sdvVideo" muted="" playsinline="" preload="auto">
+      <source src="hero2.mp4" type="video/mp4">
+    </video>
+    <div class="sdv-overlay"></div>
+    <div class="sdv-caption">
+      <div class="s-tag" style="margin-bottom:16px;">Сборка дома</div>
+      <h2 class="s-title" style="color:#fff;">Из каркаса —<br><em>в готовый дом</em></h2>
+    </div>
+    <!-- Scroll hint на scroll-driven секции -->
+    <div class="scroll-hint" id="scrollHint">
+      <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><rect x="1" y="1" width="14" height="22" rx="7" stroke="white" stroke-width="1.2"></rect><circle cx="8" cy="7" r="2" fill="white"><animate attributeName="cy" values="7;15;7" dur="1.8s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="1;0.2;1" dur="1.8s" repeatCount="indefinite"></animate></circle></svg>
+      <span>Прокрутить</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PROFILI — СТРОИТЕЛЬНАЯ ТЕХНОЛОГИЯ ─── -->
+<section class="profili" id="profili">
+  <div class="container">
+    <div class="profili-head">
+      <div>
+        <div class="s-tag fu">Технология строительства</div>
+        <h2 class="s-title fu d1">Hosekra Profili —<br><em>конструкция новой эры</em></h2>
+        <p class="s-sub fu d2">Лёгкие стальные профили с точностью изготовления 1 мм. Автоматизированное производство, монтаж без сварки — только шуруповёрт. Никакого обслуживания.</p>
+      </div>
+      <div class="profili-props fu d2">
+        <div class="pp">
+          <div class="pp-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L2 6v5c0 4 3 7 8 8 5-1 8-4 8-8V6L10 2z" stroke="var(--accent)" stroke-width="1.3"></path><path d="M7 10l2 2 4-4" stroke="var(--accent)" stroke-width="1.3" stroke-linecap="round"></path></svg>
+          </div>
+          <div class="pp-title">Размеры под заказ</div>
+          <div class="pp-text">Профили подбираются под требования клиента с точностью до 1 мм.</div>
+        </div>
+        <div class="pp">
+          <div class="pp-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="var(--accent)" stroke-width="1.3"></circle><path d="M10 6v4l3 2" stroke="var(--accent)" stroke-width="1.3" stroke-linecap="round"></path></svg>
+          </div>
+          <div class="pp-title">Быстрая установка</div>
+          <div class="pp-text">Профили поставляются панелями. Единственный инструмент — шуруповёрт.</div>
+        </div>
+        <div class="pp">
+          <div class="pp-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 10h14M10 3l7 7-7 7" stroke="var(--accent)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </div>
+          <div class="pp-title">Без обслуживания</div>
+          <div class="pp-text">Качественные материалы и исполнение обеспечивают долгий срок службы без затрат.</div>
+        </div>
+        <div class="pp">
+          <div class="pp-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="1" stroke="var(--accent)" stroke-width="1.3"></rect><path d="M7 10h6M10 7v6" stroke="var(--accent)" stroke-width="1.3" stroke-linecap="round"></path></svg>
+          </div>
+          <div class="pp-title">Краном на место</div>
+          <div class="pp-text">Доставка и выгрузка краном. Минимум техники, максимум скорости монтажа.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Слайдер проектов -->
+    <div class="profili-slider-wrap fu d1">
+      <div class="profili-slider" id="profiliSlider">
+        <div class="ps-item">
+          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/terasa_mobilne_hiske_1.jpg" alt="Терраса мобильного дома">
+          <div class="ps-label">Терраса мобильного дома</div>
+        </div>
+        <div class="ps-item">
+          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/konstrukcija_garaze_2.jpg" alt="Конструкция гаража">
+          <div class="ps-label">Конструкция гаража</div>
+        </div>
+        <div class="ps-item">
+          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/ostresje_hise_iz_profilov_3.jpg" alt="Кровля дома из профилей">
+          <div class="ps-label">Кровля из профилей</div>
+        </div>
+        <div class="ps-item">
+          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/bivalni_objekt_4.jpg" alt="Жилой объект">
+          <div class="ps-label">Жилой объект</div>
+        </div>
+        <div class="ps-item">
+          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/stopnice_iz_profilov_5.jpg" alt="Лестница из профилей">
+          <div class="ps-label">Лестница из профилей</div>
+        </div>
+        <div class="ps-item">
+          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/konstrukcija_nadstreska_terase_8.jpg" alt="Конструкция навеса">
+          <div class="ps-label">Конструкция навеса</div>
+        </div>
+        <div class="ps-item">
+          <img src="https://www.hosekra.com/profili/wp-content/themes/profili/img/profili-carousel/konstrukcija_skladisce_profili_9.jpg" alt="Склад из профилей">
+          <div class="ps-label">Складской объект</div>
+        </div>
+        <div class="ps-item">
+          <img src="https://www.hosekra.com/profili/wp-content/uploads/gospodarski-objekt-1-1024x768.jpg" alt="Хозяйственный объект">
+          <div class="ps-label">Хозяйственный объект</div>
+        </div>
+      </div>
+      <button class="ps-btn ps-prev" id="psPrev">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 4L6 9l5 5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </button>
+      <button class="ps-btn ps-next" id="psNext">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4l5 5-5 5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT GOLD STRIPE ─── -->
+<section class="about" id="about">
+  <div class="container">
+    <div>
+      <h2 class="about-h">37 лет строим дома,<br>которые служат десятилетиями</h2>
+      <p class="about-p">Hosekra — словенская компания полного цикла. Проектируем, производим, доставляем. Без посредников, с полной гарантией качества каждого изделия и углеродно нейтральным производством.</p>
+    </div>
+    <div class="about-nums">
+      <div class="fu">
+        <div class="a-num">37+</div>
+        <div class="a-label">Лет на рынке</div>
+      </div>
+      <div class="fu d1">
+        <div class="a-num">1000+</div>
+        <div class="a-label">Проектов по Европе</div>
+      </div>
+      <div class="fu d2">
+        <div class="a-num">30'</div>
+        <div class="a-label">Монтаж на месте</div>
+      </div>
+      <div class="fu d3">
+        <div class="a-num">1%</div>
+        <div class="a-label">Углеродно нейтральны</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ПРЕИМУЩЕСТВА ─── -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="features-head">
+      <div class="s-tag fu">Почему Hosekra</div>
+      <h2 class="s-title fu d1">Качество, которое<br><em>говорит само за себя</em></h2>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card fu">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2L3 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6L11 2z" stroke="var(--accent)" stroke-width="1.4" stroke-linejoin="round"></path></svg>
+        </div>
+        <div class="feat-title">15 лет гарантии</div>
+        <div class="feat-text">На каждый продукт Hosekra распространяется полная гарантия качества на 15 лет.</div>
+      </div>
+      <div class="feat-card fu d1">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="var(--accent)" stroke-width="1.4"></circle><path d="M11 6v5l3 3" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round"></path></svg>
+        </div>
+        <div class="feat-title">30 минут монтажа</div>
+        <div class="feat-text">Полностью готовое изделие привозим и устанавливаем краном. Никакой стройки на месте.</div>
+      </div>
+      <div class="feat-card fu d2">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2" y="5" width="18" height="14" rx="1.5" stroke="var(--accent)" stroke-width="1.4"></rect><path d="M7 5V3h8v2" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round"></path><path d="M2 10h18" stroke="var(--accent)" stroke-width="1.4"></path></svg>
+        </div>
+        <div class="feat-title">Полный каталог</div>
+        <div class="feat-text">Контейнеры, гаражи, надстрешки, модульные дома — всё в одном месте, от одного производителя.</div>
+      </div>
+      <div class="feat-card fu d3">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 16l4-4 3 3 4-5 3 6" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path><rect x="2" y="2" width="18" height="18" rx="1.5" stroke="var(--accent)" stroke-width="1.4"></rect></svg>
+        </div>
+        <div class="feat-title">Широкий выбор цветов</div>
+        <div class="feat-text">Множество цветов автомобильной окраски. Подбираем под ваш фасад и участок.</div>
+      </div>
+      <div class="feat-card fu d4">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2v4M11 16v4M2 11h4M16 11h4" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round"></path><circle cx="11" cy="11" r="5" stroke="var(--accent)" stroke-width="1.4"></circle></svg>
+        </div>
+        <div class="feat-title">Экологичное производство</div>
+        <div class="feat-text">Словенское производство с минимальным углеродным следом. Стальные конструкции полностью перерабатываемы.</div>
+      </div>
+      <div class="feat-card fu d1">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 11l8 8 8-8M11 3v16" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </div>
+        <div class="feat-title">Защита от непогоды</div>
+        <div class="feat-text">Стойкость к граду, сильному ветру, снегу и ультрафиолету. EH-конструкция выдерживает экстремальные условия.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ГАРАЖИ И НАДСТРЕШКИ ─── -->
+<section class="garages" id="garages">
+  <div class="container">
+    <div class="garages-head">
+      <div>
+        <div class="s-tag fu">Гаражи и Надстрешки</div>
+        <h2 class="s-title fu d1">Защита для вашего<br><em>автомобиля</em></h2>
+      </div>
+      <p class="s-sub fu d2">Металлические гаражи и навесы Hosekra — быстрое, долговечное и экономичное решение. Монтаж без фундамента, 15 лет гарантии.</p>
+    </div>
+
+    <div class="garages-grid">
+      <div class="garage-card fu">
+        <div class="garage-img">
+          <div class="garage-badge">G10</div>
+          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/garaza-hosekra-40-e1756367670698-548x433.jpg" alt="Одиночный гараж Hosekra G10">
+        </div>
+        <div class="garage-body">
+          <div class="garage-name">Одиночный гараж</div>
+          <div class="garage-desc">Универсальный гараж для одного автомобиля. Антрацит или выбор из палитры цветов.</div>
+        </div>
+      </div>
+      <div class="garage-card fu d1">
+        <div class="garage-img">
+          <div class="garage-badge">G20</div>
+          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/garaza-hosekra-94-e1756367885818-548x438.jpg" alt="Гараж с навесом Hosekra G20">
+        </div>
+        <div class="garage-body">
+          <div class="garage-name">С навесом над воротами</div>
+          <div class="garage-desc">Красивый вид и защита ворот от дождя. Навес спереди встроен в конструкцию.</div>
+        </div>
+      </div>
+      <div class="garage-card fu d2">
+        <div class="garage-img">
+          <div class="garage-badge">G40</div>
+          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/DSC00022-e1756368115494-548x423.jpg" alt="Гараж с рольставнями Hosekra G40">
+        </div>
+        <div class="garage-body">
+          <div class="garage-name">С рольставнями</div>
+          <div class="garage-desc">Большие ворота для удобной парковки. Роллер-шторы встроены в конструкцию.</div>
+        </div>
+      </div>
+      <div class="garage-card fu d3">
+        <div class="garage-img">
+          <div class="garage-badge">G70</div>
+          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/garaza-hosekra-63-e1756367968886-548x417.jpg" alt="Гараж с изоляцией Hosekra G70">
+        </div>
+        <div class="garage-body">
+          <div class="garage-name">С изоляцией</div>
+          <div class="garage-desc">5 см тепловой изоляции. Защита от мороза и летнего зноя.</div>
+        </div>
+      </div>
+      <div class="garage-card fu d4">
+        <div class="garage-img">
+          <div class="garage-badge">G80</div>
+          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/siroka-gaaza-e1756367622265-548x415.jpg" alt="Широкий двойной гараж Hosekra G80">
+        </div>
+        <div class="garage-body">
+          <div class="garage-name">Широкий двойной</div>
+          <div class="garage-desc">Места для двух машин плюс мотоцикл. Подходит как мастерская.</div>
+        </div>
+      </div>
+      <div class="garage-card fu d1">
+        <div class="garage-img">
+          <div class="garage-badge">G90</div>
+          <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/kovinska-garaza-168-548x411.jpg" alt="Гараж с навесом сбоку Hosekra G90">
+        </div>
+        <div class="garage-body">
+          <div class="garage-name">С навесом сбоку</div>
+          <div class="garage-desc">Закрытая часть для хранения + открытый навес рядом. Оптимально для участка.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ОТЗЫВЫ ─── -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="s-tag fu">Отзывы клиентов</div>
+    <h2 class="s-title fu d1">Что говорят<br><em>наши клиенты</em></h2>
+
+    <div class="reviews-grid">
+      <div class="review-card fu">
+        <div class="review-stars">
+          <svg width="80" height="14" viewBox="0 0 80 14" fill="none">
+            <path d="M7 1l1.5 4.5H13L9 8.5l1.5 4.5L7 10.5 3.5 13 5 8.5 1 6h4.5z" fill="var(--accent)"></path>
+            <path d="M23 1l1.5 4.5H29L25 8.5l1.5 4.5L23 10.5 19.5 13 21 8.5 17 6h4.5z" fill="var(--accent)"></path>
+            <path d="M39 1l1.5 4.5H45L41 8.5l1.5 4.5L39 10.5 35.5 13 37 8.5 33 6h4.5z" fill="var(--accent)"></path>
+            <path d="M55 1l1.5 4.5H61L57 8.5l1.5 4.5L55 10.5 51.5 13 53 8.5 49 6h4.5z" fill="var(--accent)"></path>
+            <path d="M71 1l1.5 4.5H77L73 8.5l1.5 4.5L71 10.5 67.5 13 69 8.5 65 6h4.5z" fill="var(--accent)"></path>
+          </svg>
+        </div>
+        <blockquote class="review-text">"Решил арендовать, чтобы проверить прочность и устойчивость гаража к ветру. Использую его для прицепа с вещами. В итоге был полностью доволен качеством и исполнением."</blockquote>
+        <div class="review-author">
+          <div class="review-avatar">M</div>
+          <div>
+            <div class="review-name">Marko</div>
+            <div class="review-loc">Горенска, Словения</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fu d1">
+        <div class="review-stars">
+          <svg width="80" height="14" viewBox="0 0 80 14" fill="none">
+            <path d="M7 1l1.5 4.5H13L9 8.5l1.5 4.5L7 10.5 3.5 13 5 8.5 1 6h4.5z" fill="var(--accent)"></path>
+            <path d="M23 1l1.5 4.5H29L25 8.5l1.5 4.5L23 10.5 19.5 13 21 8.5 17 6h4.5z" fill="var(--accent)"></path>
+            <path d="M39 1l1.5 4.5H45L41 8.5l1.5 4.5L39 10.5 35.5 13 37 8.5 33 6h4.5z" fill="var(--accent)"></path>
+            <path d="M55 1l1.5 4.5H61L57 8.5l1.5 4.5L55 10.5 51.5 13 53 8.5 49 6h4.5z" fill="var(--accent)"></path>
+            <path d="M71 1l1.5 4.5H77L73 8.5l1.5 4.5L71 10.5 67.5 13 69 8.5 65 6h4.5z" fill="var(--accent)"></path>
+          </svg>
+        </div>
+        <blockquote class="review-text">"Купил жилой контейнер для дачи. Доставили и установили за один день. Качество материалов выше ожиданий — антрацитовый фасад смотрится очень стильно."</blockquote>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div>
+            <div class="review-name">Ana</div>
+            <div class="review-loc">Любляна, Словения</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fu d2">
+        <div class="review-stars">
+          <svg width="80" height="14" viewBox="0 0 80 14" fill="none">
+            <path d="M7 1l1.5 4.5H13L9 8.5l1.5 4.5L7 10.5 3.5 13 5 8.5 1 6h4.5z" fill="var(--accent)"></path>
+            <path d="M23 1l1.5 4.5H29L25 8.5l1.5 4.5L23 10.5 19.5 13 21 8.5 17 6h4.5z" fill="var(--accent)"></path>
+            <path d="M39 1l1.5 4.5H45L41 8.5l1.5 4.5L39 10.5 35.5 13 37 8.5 33 6h4.5z" fill="var(--accent)"></path>
+            <path d="M55 1l1.5 4.5H61L57 8.5l1.5 4.5L55 10.5 51.5 13 53 8.5 49 6h4.5z" fill="var(--accent)"></path>
+            <path d="M71 1l1.5 4.5H77L73 8.5l1.5 4.5L71 10.5 67.5 13 69 8.5 65 6h4.5z" fill="var(--accent)"></path>
+          </svg>
+        </div>
+        <blockquote class="review-text">"Заказал модульный дом Living H50 для сына. Монтаж прошёл быстро и чисто. Соседи уже спрашивают контакты — выглядит лучше, чем обычный дом."</blockquote>
+        <div class="review-author">
+          <div class="review-avatar">T</div>
+          <div>
+            <div class="review-name">Tomaž</div>
+            <div class="review-loc">Марибор, Словения</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GALLERY ─── -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="s-tag fu">Галерея</div>
+    <h2 class="s-title fu d1">Наши <em>работы</em></h2>
+
+    <!-- Фильтр -->
+    <div class="gallery-filters fu d1">
+      <button class="gf-btn active" data-filter="all">Все</button>
+      <button class="gf-btn" data-filter="container">Контейнеры</button>
+      <button class="gf-btn" data-filter="garage">Гаражи</button>
+      <button class="gf-btn" data-filter="house">Дома</button>
+    </div>
+
+    <div class="gallery-strip">
+      <div class="g-item fu" data-cat="container">
+        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/bivalni_kontejner-548x411.jpg" alt="Жилой контейнер">
+        <div class="g-label">Жилой контейнер</div>
+      </div>
+      <div class="g-item fu d1" data-cat="container">
+        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/dvojni_kontejner-548x411.jpg" alt="Двойной контейнер">
+        <div class="g-label">Двойной контейнер</div>
+      </div>
+      <div class="g-item fu d2" data-cat="container">
+        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/kontejnerji_pisarne_z_vec_stekla_cover-548x411.jpg" alt="Офис-контейнер со стеклом">
+        <div class="g-label">Офис со стеклом</div>
+      </div>
+      <div class="g-item fu d3" data-cat="garage">
+        <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/garaza-s-fasado-in-hisko-cover-1024x768.jpg" alt="Гараж с фасадом">
+        <div class="g-label">Гараж с фасадом</div>
+      </div>
+      <div class="g-item fu d4" data-cat="garage">
+        <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/20250120_133653380_iOS-e1756367293283-548x411.jpg" alt="Надстрешек">
+        <div class="g-label">Надстрешек</div>
+      </div>
+      <div class="g-item fu d1" data-cat="garage">
+        <img src="https://www.hosekra.com/garaze/wp-content/uploads/sites/2/vrstne_garaze-548x411.jpg" alt="Рядные гаражи">
+        <div class="g-label">Рядные гаражи</div>
+      </div>
+      <div class="g-item fu d2" data-cat="container">
+        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/notranjost_osnovnih_kontejnerjev_cover-548x411.jpg" alt="Интерьер контейнера">
+        <div class="g-label">Интерьер</div>
+      </div>
+      <div class="g-item fu d3" data-cat="house">
+        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/dvojni-bivalni-kontejnerji-s-teraso_cover_0322-548x411.jpg" alt="Дом с террасой">
+        <div class="g-label">Дом с террасой</div>
+      </div>
+      <div class="g-item fu d4" data-cat="container">
+        <img src="https://www.hosekra.com/kontejnerji/wp-content/uploads/sites/9/kontejnerji_v_drugih_barvah_cover-548x411.jpg" alt="Контейнеры в разных цветах">
+        <div class="g-label">Разные цвета</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="s-tag fu">Свяжитесь с нами</div>
+    <h2 class="s-title fu d1">Начните свой<br><em>проект сегодня</em></h2>
+
+    <div class="contact-wrap">
+      <div>
+        <div class="c-detail fu">
+          <div class="c-icon">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1C5 1 3 3 3 5.5c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5C12 3 10 1 7.5 1z" stroke="var(--accent)" stroke-width="1.3"></path><circle cx="7.5" cy="5.5" r="1.5" stroke="var(--accent)" stroke-width="1.3"></circle></svg>
+          </div>
+          <div>
+            <div class="c-label">Адрес</div>
+            <div class="c-val">Kolodvorska ulica 37e,<br>2310 Slovenska Bistrica, Slovenija</div>
+          </div>
+        </div>
+        <div class="c-detail fu d1">
+          <div class="c-icon">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="1" y="3" width="13" height="9" stroke="var(--accent)" stroke-width="1.3"></rect><path d="M1 3l6.5 5L14 3" stroke="var(--accent)" stroke-width="1.3"></path></svg>
+          </div>
+          <div>
+            <div class="c-label">Email</div>
+            <div class="c-val"><a href="mailto:hosekra@hosekra.si">hosekra@hosekra.si</a></div>
+          </div>
+        </div>
+        <div class="c-detail fu d2">
+          <div class="c-icon">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 2h2.5l1.5 3.5-1.5 1c.8 1.8 2.2 3.2 4 4l1-1.5 3.5 1.5V13C8 13 2 7 2 2h1z" stroke="var(--accent)" stroke-width="1.3"></path></svg>
+          </div>
+          <div>
+            <div class="c-label">Телефон</div>
+            <div class="c-val"><a href="tel:+38628055120">+386 2 80 55 120</a></div>
+          </div>
+        </div>
+      </div>
+
+      <form class="c-form fu d1" onsubmit="submitForm(event)">
+        <div class="fr">
+          <div class="fg">
+            <label>Имя</label>
+            <input type="text" placeholder="Ваше имя" required="">
+          </div>
+          <div class="fg">
+            <label>Телефон</label>
+            <input type="tel" placeholder="+7 000 000 00 00">
+          </div>
+        </div>
+        <div class="fg">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com" required="">
+        </div>
+        <div class="fg">
+          <label>Интересует</label>
+          <select>
+            <option value="" disabled="" selected="">Выберите продукт...</option>
+            <option>Жилой контейнер</option>
+            <option>Двойной контейнер</option>
+            <option>Контейнер с фасадом Piano</option>
+            <option>Санитарный контейнер</option>
+            <option>Контейнер-офис / торговля</option>
+            <option>Модульный дом Living H50+50</option>
+            <option>Другое / Индивидуальный проект</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Сообщение</label>
+          <textarea rows="4" placeholder="Опишите проект, размеры, сроки..."></textarea>
+        </div>
+        <button type="submit" class="btn-gold" style="width:100%;justify-content:center;padding:15px;font-size:13px;">
+          Отправить заявку
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1 6.5h11M7 2l4.5 4.5L7 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+        <div id="ok" style="display:none;padding:14px;background:rgba(200,169,110,0.1);border:1px solid rgba(200,169,110,0.3);color:var(--accent);font-size:13px;text-align:center;letter-spacing:0.04em;">
+          Заявка отправлена — свяжемся в течение 24 часов.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-g">
+      <div>
+        <div class="f-logo-main">Hosekra</div>
+        <div class="f-logo-sub">Kontejnerji</div>
+        <p class="f-desc">Премиальные модульные дома и контейнеры. Производство в Словении. Доставка по всей Европе.</p>
+      </div>
+      <div>
+        <div class="f-col-t">Продукты</div>
+        <ul class="f-links">
+          <li><a href="#">Жилые контейнеры</a></li>
+          <li><a href="#">Двойные контейнеры</a></li>
+          <li><a href="#">Санитарные</a></li>
+          <li><a href="#">Офис / Торговля</a></li>
+          <li><a href="#">Модульные дома</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="f-col-t">Компания</div>
+        <ul class="f-links">
+          <li><a href="#">О нас</a></li>
+          <li><a href="#">Галерея</a></li>
+          <li><a href="#">Блог</a></li>
+          <li><a href="#">Карьера</a></li>
+          <li><a href="#">Контакт</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="f-col-t">Сервис</div>
+        <ul class="f-links">
+          <li><a href="#">Конфигуратор</a></li>
+          <li><a href="#">Прайс-лист</a></li>
+          <li><a href="#">Доставка</a></li>
+          <li><a href="#">Гарантия</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-b">
+      <div class="f-copy">© 2026 Hosekra, d.o.o. Все права защищены.</div>
+      <div class="f-socials">
+        <a href="#" class="f-social" aria-label="Facebook">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M8.5 2H7a2 2 0 00-2 2v1.5H3.5V8H5v5h3V8h2l.5-2.5H8V4a.5.5 0 01.5-.5H9V2z" stroke="var(--muted)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </a>
+        <a href="#" class="f-social" aria-label="Instagram">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="1.5" y="1.5" width="10" height="10" rx="2.5" stroke="var(--muted)" stroke-width="1.1"></rect><circle cx="6.5" cy="6.5" r="2.3" stroke="var(--muted)" stroke-width="1.1"></circle><circle cx="10" cy="3" r="0.6" fill="var(--muted)"></circle></svg>
+        </a>
+        <a href="#" class="f-social" aria-label="YouTube">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="1" y="3" width="11" height="7" rx="1.5" stroke="var(--muted)" stroke-width="1.1"></rect><path d="M5.5 5l3 1.5-3 1.5V5z" fill="var(--muted)"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ─── SCROLL-DRIVEN VIDEO (секция после Process) ───
+  // hero.mp4 — автовоспроизведение один раз в Hero (autoplay, без loop)
+  // hero2.mp4 — scroll-driven: скроллишь → видео перематывается
+  // Нелинейность: первые 5 сек видео пролетают быстрее (easeIn mapping)
+
+  const sdvVideo = document.getElementById('sdvVideo');
+  const sdvTrack = document.getElementById('sdvTrack');
+
+  let sdvDuration = 0;
+  let sdvTicking = false;
+
+  // Нелинейная функция: ускоряем первые 5 сек видео
+  // progress [0..1] → videoTime [0..duration]
+  function nonLinearTime(progress, duration) {
+    // Первые 5 секунд занимают только первые 20% скролла (быстрее)
+    // Оставшееся время занимает 80% скролла
+    const fastEnd = 5; // секунд
+    const fastScrollFraction = 0.20; // первые 20% скролла
+
+    if (duration <= fastEnd) {
+      // Видео короче 5 сек — линейно
+      return progress * duration;
+    }
+
+    if (progress <= fastScrollFraction) {
+      // Быстрая зона: первые 20% скролла → 0..5 сек видео
+      return (progress / fastScrollFraction) * fastEnd;
+    } else {
+      // Медленная зона: 20%..100% скролла → 5..end сек
+      const slowProgress = (progress - fastScrollFraction) / (1 - fastScrollFraction);
+      return fastEnd + slowProgress * (duration - fastEnd);
+    }
+  }
+
+  function updateSdvVideo() {
+    if (!sdvDuration) return;
+
+    const trackTop = sdvTrack.offsetTop;
+    const trackHeight = sdvTrack.offsetHeight;
+    const viewH = window.innerHeight;
+    const scrollY = window.scrollY;
+
+    const scrollable = trackHeight - viewH;
+    const scrolled = scrollY - trackTop;
+    const progress = Math.max(0, Math.min(1, scrolled / scrollable));
+
+    sdvVideo.currentTime = nonLinearTime(progress, sdvDuration);
+  }
+
+  sdvVideo.addEventListener('loadedmetadata', () => {
+    sdvDuration = sdvVideo.duration;
+    // Показываем первый кадр
+    sdvVideo.play().then(() => sdvVideo.pause()).catch(() => {});
+    updateSdvVideo();
+  });
+  sdvVideo.load();
+
+  window.addEventListener('scroll', () => {
+    if (!sdvTicking) {
+      requestAnimationFrame(() => {
+        updateSdvVideo();
+        sdvTicking = false;
+      });
+      sdvTicking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('load', updateSdvVideo);
+
+  // ─── SCROLL ANIMATIONS ───
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.fu').forEach(el => io.observe(el));
+
+  // ─── HEADER SCROLL ───
+  const hdr = document.getElementById('hdr');
+  window.addEventListener('scroll', () => {
+    hdr.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  // ─── STEPS HOVER ───
+  document.querySelectorAll('.step').forEach(s => {
+    s.addEventListener('mouseenter', () => {
+      document.querySelectorAll('.step').forEach(x => x.classList.remove('on'));
+      s.classList.add('on');
+    });
+  });
+
+  // ─── PROFILI SLIDER ───
+  const slider = document.getElementById('profiliSlider');
+  const items = slider ? slider.querySelectorAll('.ps-item') : [];
+  let sliderIndex = 0;
+  const visible = () => window.innerWidth <= 768 ? 1 : window.innerWidth <= 1024 ? 2 : 3;
+
+  function updateSlider() {
+    const v = visible();
+    const max = Math.max(0, items.length - v);
+    sliderIndex = Math.min(sliderIndex, max);
+    const itemW = items[0] ? items[0].offsetWidth + 14 : 0;
+    slider.style.transform = `translateX(-${sliderIndex * itemW}px)`;
+  }
+
+  document.getElementById('psNext')?.addEventListener('click', () => {
+    sliderIndex = Math.min(sliderIndex + 1, items.length - visible());
+    updateSlider();
+  });
+  document.getElementById('psPrev')?.addEventListener('click', () => {
+    sliderIndex = Math.max(sliderIndex - 1, 0);
+    updateSlider();
+  });
+  window.addEventListener('resize', updateSlider);
+
+  // ─── GALLERY FILTER ───
+  document.querySelectorAll('.gf-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.gf-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.g-item').forEach(item => {
+        if (filter === 'all' || item.dataset.cat === filter) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // ─── MOBILE MENU ───
+  const ham = document.querySelector('.ham');
+  const nav = document.querySelector('nav');
+  let mobileOpen = false;
+
+  // Создаём мобильное меню
+  const mobileMenu = document.createElement('div');
+  mobileMenu.id = 'mobileMenu';
+  mobileMenu.style.cssText = `
+    display:none; position:fixed; top:76px; left:0; right:0; z-index:199;
+    background:rgba(14,15,15,0.98); backdrop-filter:blur(24px);
+    padding:32px 24px; border-bottom:1px solid rgba(255,255,255,0.07);
+    flex-direction:column; gap:0;
+  `;
+  const navLinks = ['#products:Контейнеры','#garages:Гаражи','#features:Преимущества','#reviews:Отзывы','#gallery:Галерея','#contact:Контакт'];
+  navLinks.forEach(item => {
+    const [href, label] = item.split(':');
+    const a = document.createElement('a');
+    a.href = href; a.textContent = label;
+    a.style.cssText = 'display:block; color:#e4e2de; text-decoration:none; font-size:20px; font-weight:500; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.06); letter-spacing:0.04em;';
+    a.addEventListener('click', () => { mobileOpen = false; mobileMenu.style.display = 'none'; });
+    mobileMenu.appendChild(a);
+  });
+  const mobileBtn = document.createElement('a');
+  mobileBtn.href = '#contact'; mobileBtn.textContent = 'Получить предложение';
+  mobileBtn.style.cssText = 'display:inline-block; margin-top:24px; background:#c8a96e; color:#1a1400; font-weight:700; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; padding:14px 28px; text-decoration:none;';
+  mobileBtn.addEventListener('click', () => { mobileOpen = false; mobileMenu.style.display = 'none'; });
+  mobileMenu.appendChild(mobileBtn);
+  document.body.appendChild(mobileMenu);
+
+  ham.addEventListener('click', () => {
+    mobileOpen = !mobileOpen;
+    mobileMenu.style.display = mobileOpen ? 'flex' : 'none';
+  });
+
+  // ─── SMOOTH SCROLL для якорей ───
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ─── FORM ───
+  function submitForm(e) {
+    e.preventDefault();
+    document.getElementById('ok').style.display = 'block';
+    e.target.querySelectorAll('input,textarea,select').forEach(el => el.value = '');
+    setTimeout(() => document.getElementById('ok').style.display = 'none', 5000);
+  }
+</script><div id="mobileMenu" style="display: none; position: fixed; top: 76px; left: 0px; right: 0px; z-index: 199; background: rgba(14, 15, 15, 0.98); backdrop-filter: blur(24px); padding: 32px 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.07); flex-direction: column; gap: 0px;"><a href="#products" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Контейнеры</a><a href="#garages" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Гаражи</a><a href="#features" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Преимущества</a><a href="#reviews" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Отзывы</a><a href="#gallery" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Галерея</a><a href="#contact" style="display: block; color: rgb(228, 226, 222); text-decoration: none; font-size: 20px; font-weight: 500; padding: 14px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); letter-spacing: 0.04em;">Контакт</a><a href="#contact" style="display: inline-block; margin-top: 24px; background: rgb(200, 169, 110); color: rgb(26, 20, 0); font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 28px; text-decoration: none;">Получить предложение</a></div>
+
+
+
+</body></html>
